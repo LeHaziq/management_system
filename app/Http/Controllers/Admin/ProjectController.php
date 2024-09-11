@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class ProjectController extends Controller
 {
     public function index()
     {
-        return view('web.admin.index');
+        return view('web.admin.project.index');
     }
 }
