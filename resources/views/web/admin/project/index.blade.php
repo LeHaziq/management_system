@@ -5,4 +5,7 @@
         </h2>
     </x-slot>
 
+    <div class="py-12">
+        @livewire('admin.project.list-project')
+    </div>
 </x-admin-layout>
