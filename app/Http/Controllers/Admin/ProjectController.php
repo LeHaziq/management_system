@@ -11,4 +11,9 @@ class ProjectController extends Controller
     {
         return view('web.admin.project.index');
     }
+
+    public function create()
+    {
+        return view('web.admin.project.create');
+    }
 }

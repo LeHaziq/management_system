@@ -6,5 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
-    Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
+    Route::get('/projek', [ProjectController::class, 'index'])->name('project.index');
+    Route::get('/projek/tambah', [ProjectController::class, 'create'])->name('project.create');
 });
