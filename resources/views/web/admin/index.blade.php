@@ -8,7 +8,5 @@
     <div class="py-12">
         @livewire(\App\Livewire\Admin\Project\ProjectOverview::class)
     </div>
-
-
 </x-admin-layout>
 

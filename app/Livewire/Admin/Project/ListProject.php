@@ -6,12 +6,14 @@ use App\Models\Project;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\Filter as FiltersFilter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ListProject extends Component implements HasForms, HasTable
@@ -51,7 +53,8 @@ class ListProject extends Component implements HasForms, HasTable
                     ->label('Harga Kontrak')
                     ->numeric()
                     ->money('myr')
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -71,9 +74,21 @@ class ListProject extends Component implements HasForms, HasTable
                         'Tempoh jaminan' => 'Tempoh jaminan',
                         'Selesai' => 'Selesai',
                     ])
+                    ->native(false),
             ])
             ->actions([
-                // ...
+                ViewAction::make()
+                    ->label('Lihat')
+                    ->icon(false)
+                    ->modal()
+                    ->modalWidth('w-full')
+                    ->slideOver()
+                    ->modalHeading('Lihat Project')
+                    ->modalDescription('Lihat detail project')
+                    ->modalContent(fn (Project $record): View => view(
+                        'web.admin.project.modal.details',
+                        ['record' => $record],
+                    ))
             ])
             ->bulkActions([
                 // ...

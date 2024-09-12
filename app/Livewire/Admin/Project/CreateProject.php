@@ -46,7 +46,7 @@ class CreateProject extends Component implements HasForms
                     ]),
 
                 // Contract Details
-                Section::make('Contract Details')
+                Section::make('Maklumat Kontrak')
                     ->schema([
                         TextInput::make('contract_period')
                             ->required()
@@ -60,10 +60,16 @@ class CreateProject extends Component implements HasForms
                             ->helperText('Bulan'),
                         DatePicker::make('start_date')
                             ->required()
-                            ->label('Tarikh Mula Kontrak'),
+                            ->label('Tarikh Mula Kontrak')
+                            ->native(false)
+                            ->placeholder('dd/mm/yyyy')
+                            ->suffixIcon('heroicon-s-calendar'),
                         DatePicker::make('end_date')
                             ->required()
-                            ->label('Tarikh Tamat Kontrak'),
+                            ->label('Tarikh Tamat Kontrak')
+                            ->native(false)
+                            ->placeholder('dd/mm/yyyy')
+                            ->suffixIcon('heroicon-s-calendar'),
                     ]),
 
                 // Financial Information
@@ -97,6 +103,8 @@ class CreateProject extends Component implements HasForms
                                 'Tempoh jaminan' => 'Tempoh jaminan',
                                 'Selesai' => 'Selesai',
                             ])
+                            ->native(false)
+                            ->searchable()
                             ->placeholder('Pilih status projek')
                             ->helperText('Staatus projek terkini')
                     ]),
