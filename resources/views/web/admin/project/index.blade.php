@@ -4,7 +4,8 @@
             {{ __('Pengurusan Projek') }}
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-4">
+        <x-mysoftcare.navigations.breadcrumb class="mb-4" :items="$breadcrumbs" />
         <h2 class="font-semibold text-2xl mb-4">
             Selamat datang, {{ Auth::user()->name }}.
         </h2>

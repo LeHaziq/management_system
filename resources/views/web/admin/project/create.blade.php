@@ -4,10 +4,8 @@
             {{ __('Tambah Projek') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <h2 class="font-semibold text-2xl pt-6">
-            Selamat datang, {{ Auth::user()->name }}.
-        </h2>
+    <div class="py-4">
+        <x-mysoftcare.navigations.breadcrumb class="mb-4" :items="$breadcrumbs" />
         @livewire('admin.project.create-project')
     </div>
 </x-admin-layout>

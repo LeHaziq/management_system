@@ -9,11 +9,24 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return view('web.admin.project.index');
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Projek']
+        ];
+
+        return view('web.admin.project.index', [
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
 
     public function create()
     {
-        return view('web.admin.project.create');
+        $breadcrumbs = [
+            ['url' => route('admin.project.index'), 'label' => 'Pengurusan Projek'],
+            ['url' => '', 'label' => 'Tambah Projek'],
+        ];
+
+        return view('web.admin.project.create', [
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
 }
