@@ -8,4 +8,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::get('/projek', [ProjectController::class, 'index'])->name('project.index');
     Route::get('/projek/tambah', [ProjectController::class, 'create'])->name('project.create');
+    Route::get('/projek/kemaskini/{id}', [ProjectController::class, 'edit'])->name('project.edit');
 });

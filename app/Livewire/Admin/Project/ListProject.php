@@ -5,7 +5,10 @@ namespace App\Livewire\Admin\Project;
 use App\Models\Project;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -34,7 +37,7 @@ class ListProject extends Component implements HasForms, HasTable
                     ->url(fn(): string => route('admin.project.create'))
                     ->color('info')
             ])
-            ->query(Project::query())
+            ->query(Project::query()->latest())
             ->columns([
                 TextColumn::make('title')
                     ->label('Nama projek')
@@ -46,7 +49,7 @@ class ListProject extends Component implements HasForms, HasTable
                 TextColumn::make('start_date')
                     ->label('Tarikh Mula Kontrak')
                     ->sortable()
-                    ->formatStateUsing(fn ($state) => $state->format('d/m/Y')),
+                    ->formatStateUsing(fn($state) => $state->format('d/m/Y')),
                 TextColumn::make('end_date')
                     ->label('Tarikh Tamat Kontrak')
                     ->sortable()
@@ -59,7 +62,7 @@ class ListProject extends Component implements HasForms, HasTable
                     ->toggleable(),
                 TextColumn::make('status')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'Berjaya' => 'success',
                         'Aktif' => 'primary',
                         'EOT' => 'danger',
@@ -87,10 +90,25 @@ class ListProject extends Component implements HasForms, HasTable
                     ->slideOver()
                     ->modalHeading('Lihat Project')
                     ->modalDescription('Lihat detail project')
-                    ->modalContent(fn (Project $record): View => view(
+                    ->modalContent(fn(Project $record): View => view(
                         'web.admin.project.modal.details',
                         ['record' => $record],
-                    ))
+                    )),
+                ActionGroup::make([
+                    EditAction::make()
+                        ->label('Kemaskini')
+                        ->icon(false)
+                        ->url(fn(Project $record): string => route('admin.project.edit', $record->id)),
+                    DeleteAction::make('delete')
+                        ->label('Padam')
+                        ->icon(false)
+                        ->requiresConfirmation()
+                        ->action(fn(Project $record) => $record->delete())
+                        ->modalHeading('Padam Projek')
+                        ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+                        ->modalCancelActionLabel('Tidak')
+                        ->modalSubmitActionLabel('Ya'),
+                ])
             ])
             ->bulkActions([
                 // ...

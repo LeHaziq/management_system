@@ -20,10 +20,13 @@ class CreateProject extends Component implements HasForms
     use InteractsWithForms;
 
     public ?array $data = [];
+    public ?Project $project = null;
 
     public function mount(): void
     {
-        $this->form->fill();
+        $this->project ??= new Project();
+        $this->data = $this->project->toArray();
+        $this->form->fill($this->data);
     }
 
     public function form(Form $form): Form
@@ -115,7 +118,12 @@ class CreateProject extends Component implements HasForms
     public function create()
     {
         if ($this->form->validate()) {
-            Project::create($this->form->getState());
+            if (!$this->project->exists) {
+                Project::create($this->form->getState());
+            } else {
+                $this->project->fill($this->form->getState())->save();
+            }
+
             Notification::make()
                 ->title('Berjaya')
                 ->body('Maklumat berjaya disimpan')
