@@ -35,11 +35,14 @@ class CreateProject extends Component implements HasForms
                     ->description('Maklumat mengenai projek')
                     ->schema([
                         TextInput::make('title')
-                            ->required(),
+                            ->required()
+                            ->label('Nama projek'),
                         TextInput::make('agency')
-                            ->required(),
+                            ->required()
+                            ->label('Agensi'),
                         TextInput::make('pic_agency')
-                            ->required(),
+                            ->required()
+                            ->label('PIC Agensi'),
                     ]),
 
                 // Contract Details
@@ -47,14 +50,20 @@ class CreateProject extends Component implements HasForms
                     ->schema([
                         TextInput::make('contract_period')
                             ->required()
-                            ->integer(),
+                            ->integer()
+                            ->label('Tempoh Kontrak')
+                            ->helperText('Bulan'),
                         TextInput::make('warranty_period')
                             ->required()
-                            ->integer(),
+                            ->integer()
+                            ->label('Tempoh Jaminan')
+                            ->helperText('Bulan'),
                         DatePicker::make('start_date')
-                            ->required(),
+                            ->required()
+                            ->label('Tarikh Mula Kontrak'),
                         DatePicker::make('end_date')
-                            ->required(),
+                            ->required()
+                            ->label('Tarikh Tamat Kontrak'),
                     ]),
 
                 // Financial Information
@@ -63,7 +72,8 @@ class CreateProject extends Component implements HasForms
                         TextInput::make('price')
                             ->required()
                             ->numeric()
-                            ->prefix('RM'),
+                            ->prefix('RM')
+                            ->label('Harga Kontrak'),
                         FileUpload::make('SST_file')
                             ->label('SST File'),
                     ]),
@@ -73,9 +83,11 @@ class CreateProject extends Component implements HasForms
                     ->schema([
                         Textarea::make('notes')
                             ->required()
-                            ->columnSpan('full'),
+                            ->columnSpan('full')
+                            ->label('Catatan'),
                         TextInput::make('creator')
-                            ->required(),
+                            ->required()
+                            ->label('Pencipta'),
                         Select::make('status')
                             ->required()
                             ->options([

@@ -48,6 +48,7 @@ class ListProject extends Component implements HasForms, HasTable
                     ->label('Tarikh Tamat Kontrak')
                     ->sortable(),
                 TextColumn::make('price')
+                    ->label('Harga Kontrak')
                     ->numeric()
                     ->money('myr')
                     ->sortable(),
