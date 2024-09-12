@@ -13,6 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 
 class CreateProject extends Component implements HasForms
 {
@@ -30,46 +31,80 @@ class CreateProject extends Component implements HasForms
         return $form
             ->schema([
                 // Basic Information
-                Section::make('Basic Information')
+                Section::make('Maklumat Projek')
+                    ->description('Maklumat mengenai projek')
                     ->schema([
-                        TextInput::make('title')->required()->columnSpan('full'),
-                        TextInput::make('agency')->required(),
-                        TextInput::make('pic_agency')->required(),
-                    ])->columns(2),
+                        TextInput::make('title')
+                            ->required(),
+                        TextInput::make('agency')
+                            ->required(),
+                        TextInput::make('pic_agency')
+                            ->required(),
+                    ]),
 
                 // Contract Details
                 Section::make('Contract Details')
                     ->schema([
-                        TextInput::make('contract_period')->required()->integer(),
-                        TextInput::make('warranty_period')->required()->integer(),
-                        DatePicker::make('start_date')->required(),
-                        DatePicker::make('end_date')->required(),
-                    ])->columns(2),
+                        TextInput::make('contract_period')
+                            ->required()
+                            ->integer(),
+                        TextInput::make('warranty_period')
+                            ->required()
+                            ->integer(),
+                        DatePicker::make('start_date')
+                            ->required(),
+                        DatePicker::make('end_date')
+                            ->required(),
+                    ]),
 
                 // Financial Information
-                Section::make('Financial Information')
+                Section::make('Maklumat Kewangan')
                     ->schema([
-                        TextInput::make('price')->required()->numeric()->prefix('RM'),
-                        FileUpload::make('SST_file')->label('SST File'),
+                        TextInput::make('price')
+                            ->required()
+                            ->numeric()
+                            ->prefix('RM'),
+                        FileUpload::make('SST_file')
+                            ->label('SST File'),
                     ]),
 
                 // Additional Information
-                Section::make('Additional Information')
+                Section::make('Maklumat Tambahan')
                     ->schema([
-                        Textarea::make('notes')->required()->columnSpan('full'),
-                        TextInput::make('creator')->required(),
-                        Select::make('status')->required()->options([
-                            'active' => 'Active',
-                            'inactive' => 'Inactive',
-                        ]),
-                    ])->columns(2),
+                        Textarea::make('notes')
+                            ->required()
+                            ->columnSpan('full'),
+                        TextInput::make('creator')
+                            ->required(),
+                        Select::make('status')
+                            ->required()
+                            ->options([
+                                'Berjaya' => 'Berjaya',
+                                'Aktif' => 'Aktif',
+                                'EOT' => 'EOT',
+                                'Tempoh jaminan' => 'Tempoh jaminan',
+                                'Selesai' => 'Selesai',
+                            ])
+                            ->placeholder('Pilih status projek')
+                            ->helperText('Staatus projek terkini')
+                    ]),
             ])
-            ->statePath('data');
+            ->statePath('data')->inlineLabel();
     }
 
-    public function create(): void
+    public function create()
     {
-        Project::create($this->form->getState())->redirect()->route('admin.project.index');
+        if ($this->form->validate()) {
+            Project::create($this->form->getState());
+            Notification::make()
+                ->title('Berjaya')
+                ->body('Maklumat berjaya disimpan')
+                ->success()
+                ->color('success')
+                ->seconds(3)
+                ->send();
+        }
+        return to_route('admin.project.index');
     }
 
     public function render()

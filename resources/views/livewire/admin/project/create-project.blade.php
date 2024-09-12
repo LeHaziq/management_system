@@ -4,7 +4,7 @@
 
         <div class="flex justify-end">
             <x-button class="mt-4" type="submit">
-                Submit
+                Simpan
             </x-button>
 
         </div>
