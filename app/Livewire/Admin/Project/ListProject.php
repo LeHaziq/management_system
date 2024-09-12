@@ -45,12 +45,14 @@ class ListProject extends Component implements HasForms, HasTable
                     ->sortable(),
                 TextColumn::make('start_date')
                     ->label('Tarikh Mula Kontrak')
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) => $state->format('d/m/Y')),
                 TextColumn::make('end_date')
                     ->label('Tarikh Tamat Kontrak')
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(fn($state) => $state->format('d/m/Y')),
                 TextColumn::make('price')
-                    ->label('Harga Kontrak')
+                    ->label('Nilai Kontrak')
                     ->numeric()
                     ->money('myr')
                     ->sortable()

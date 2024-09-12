@@ -11,7 +11,9 @@ class Project extends Model
     use HasFactory;
 
     protected $casts = [
-        'price' => MoneyCast::class
+        'price' => MoneyCast::class,
+        'start_date' => 'date',
+        'end_date' => 'date',
     ];
 
     protected $fillable = [
