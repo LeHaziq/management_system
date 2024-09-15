@@ -4,8 +4,9 @@ namespace App\Livewire\Admin\Project;
 
 use App\Livewire\BaseForm;
 use App\Models\Agency;
-use App\Models\City;
+use App\Models\District;
 use App\Models\Project;
+use App\Models\State;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
@@ -16,6 +17,7 @@ use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 
 class ProjectForm extends BaseForm
@@ -50,20 +52,36 @@ class ProjectForm extends BaseForm
                             ->createOptionForm([
                                 TextInput::make('name')->required(),
                                 TextInput::make('address')->required(),
-                                TextInput::make('address_2')->required(),
-                                TextInput::make('address_3')->required(),
-                                Select::make('city_id')
+                                TextInput::make('address_2'),
+                                TextInput::make('address_3'),
+                                Select::make('state_id')
+                                    ->label('State')
                                     ->required()
-                                    ->options(function () {
-                                        return City::where('state_id', '=', 2322)
+                                    ->options(State::pluck('name', 'id'))
+                                    ->searchable()
+                                    ->preload()
+                                    ->live()
+                                    ->afterStateUpdated(fn(callable $set) => $set('district_id', null)),
+
+                                Select::make('district_id')
+                                    ->label('District')
+                                    ->required()
+                                    ->options(function (callable $get) {
+                                        $stateId = $get('state_id');
+                                        if (!$stateId) {
+                                            return [];
+                                        }
+                                        return District::where('state_id', $stateId)
                                             ->orderBy('name')
                                             ->pluck('name', 'id');
                                     })
                                     ->searchable()
-                                    ->preload(),
+                                    ->preload()
+                                    ->live()
+                                    ->disabled(fn(callable $get) => !$get('state_id')),
                                 TextInput::make('zip_code')->required(),
-                                TextInput::make('phone')->required(),
-                                TextInput::make('email')->required(),
+                                TextInput::make('phone')->required()->tel(),
+                                TextInput::make('email')->required()->email(),
                             ])
                             ->createOptionUsing(function (array $data) {
                                 return Agency::create($data);

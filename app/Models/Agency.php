@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Agency extends Model
@@ -12,7 +13,7 @@ class Agency extends Model
 
     protected $fillable = [
         'name',
-        'city_id',
+        'district_id',
         'address',
         'zip_code',
         'phone',
@@ -22,5 +23,10 @@ class Agency extends Model
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class);
     }
 }

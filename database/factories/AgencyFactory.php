@@ -20,7 +20,7 @@ class AgencyFactory extends Factory
             'name' => $this->faker->company(),
             'address' => $this->faker->address(),
             'zip_code' => $this->faker->postcode(),
-            'city_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
+            'district_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
         ];
