@@ -9,6 +9,6 @@
         <h2 class="font-semibold text-2xl mb-4">
             Selamat datang, {{ Auth::user()->name }}.
         </h2>
-        @livewire('admin.project.list-project')
+        <livewire:admin.project.project-table />
     </div>
 </x-admin-layout>

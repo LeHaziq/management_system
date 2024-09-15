@@ -6,7 +6,8 @@
     </x-slot>
     <div class="py-4">
         <x-mysoftcare.navigations.breadcrumb class="mb-4" :items="$breadcrumbs" />
-        @livewire('admin.project.create-project' , ['project' => $project])
+        <livewire:admin.project.project-form :project="$project" />
+
     </div>
 </x-admin-layout>
 

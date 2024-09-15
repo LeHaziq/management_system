@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Project;
 
+use App\Livewire\BaseForm;
 use App\Models\Project;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -15,11 +16,9 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 
-class CreateProject extends Component implements HasForms
+class ProjectForm extends BaseForm
 {
-    use InteractsWithForms;
 
-    public ?array $data = [];
     public ?Project $project = null;
 
     public function mount(): void
@@ -115,28 +114,28 @@ class CreateProject extends Component implements HasForms
             ->statePath('data')->inlineLabel();
     }
 
-    public function create()
+    public function save()
     {
-        if ($this->form->validate()) {
-            if (!$this->project->exists) {
-                Project::create($this->form->getState());
-            } else {
-                $this->project->fill($this->form->getState())->save();
-            }
+        $this->form->getState();
+        $this->project->fill([
+            ...$this->data,
+        ])->save();
 
-            Notification::make()
-                ->title('Berjaya')
-                ->body('Maklumat berjaya disimpan')
-                ->success()
-                ->color('success')
-                ->seconds(3)
-                ->send();
-        }
+        // if ($this->form->validate()) {
+        //     if (!$this->project->exists) {
+        //         Project::create($this->form->getState());
+        //     } else {
+        //         $this->project->fill($this->form->getState())->save();
+        //     }
+
+        Notification::make()
+            ->title('Berjaya')
+            ->body('Maklumat berjaya disimpan')
+            ->success()
+            ->color('success')
+            ->seconds(3)
+            ->send();
+
         return to_route('admin.project.index');
-    }
-
-    public function render()
-    {
-        return view('livewire.admin.project.create-project');
     }
 }
