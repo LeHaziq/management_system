@@ -14,7 +14,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @php
                     $links = [
-                    ['name' => 'Utama', 'route' => 'admin.index'],
+                    ['name' => 'Utama', 'route' => 'dashboard'],
                     ['name' => 'Pengurusan Projek', 'route' => 'admin.project.index']
                     ]
                     @endphp

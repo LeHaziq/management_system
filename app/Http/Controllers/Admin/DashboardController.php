@@ -9,6 +9,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('web.admin.index');
+        if (auth()->user()->hasRole('admin')) {
+            return view('web.admin.index');
+        }
+
+        return view('dashboard');
     }
 }
