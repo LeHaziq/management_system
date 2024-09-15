@@ -49,6 +49,7 @@ class ProjectForm extends BaseForm
                             ->options(Agency::pluck('name', 'id'))
                             ->searchable()
                             ->preload()
+                            ->live()
                             ->createOptionForm([
                                 TextInput::make('name')->required(),
                                 TextInput::make('address')->required(),
@@ -84,7 +85,30 @@ class ProjectForm extends BaseForm
                                 TextInput::make('email')->required()->email(),
                             ])
                             ->createOptionUsing(function (array $data) {
-                                return Agency::create($data);
+                                // Combine address fields
+                                $fullAddress = implode(', ', array_filter([
+                                    $data['address'],
+                                    $data['address_2'] ?? null,
+                                    $data['address_3'] ?? null
+                                ]));
+
+                                // Create new Agency with combined address
+                                $agency = Agency::create([
+                                    'name' => $data['name'],
+                                    'address' => $fullAddress,
+                                    'district_id' => $data['district_id'],
+                                    'zip_code' => $data['zip_code'],
+                                    'phone' => $data['phone'],
+                                    'email' => $data['email'],
+                                ]);
+
+                                Notification::make()
+                                    ->title('Success')
+                                    ->body('Agency created successfully')
+                                    ->success()
+                                    ->send();
+
+                                return $agency->id;
                             }),
                         TextInput::make('pic_agency')
                             ->required()
