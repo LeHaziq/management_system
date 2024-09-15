@@ -3,6 +3,8 @@
 namespace App\Livewire\Admin\Project;
 
 use App\Livewire\BaseForm;
+use App\Models\Agency;
+use App\Models\City;
 use App\Models\Project;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -39,9 +41,33 @@ class ProjectForm extends BaseForm
                         TextInput::make('title')
                             ->required()
                             ->label('Nama projek'),
-                        TextInput::make('agency')
+                        Select::make('agency_id')
                             ->required()
-                            ->label('Agensi'),
+                            ->label('Agensi')
+                            ->options(Agency::pluck('name', 'id'))
+                            ->searchable()
+                            ->preload()
+                            ->createOptionForm([
+                                TextInput::make('name')->required(),
+                                TextInput::make('address')->required(),
+                                TextInput::make('address_2')->required(),
+                                TextInput::make('address_3')->required(),
+                                Select::make('city_id')
+                                    ->required()
+                                    ->options(function () {
+                                        return City::where('state_id', '=', 2322)
+                                            ->orderBy('name')
+                                            ->pluck('name', 'id');
+                                    })
+                                    ->searchable()
+                                    ->preload(),
+                                TextInput::make('zip_code')->required(),
+                                TextInput::make('phone')->required(),
+                                TextInput::make('email')->required(),
+                            ])
+                            ->createOptionUsing(function (array $data) {
+                                return Agency::create($data);
+                            }),
                         TextInput::make('pic_agency')
                             ->required()
                             ->label('PIC Agensi'),

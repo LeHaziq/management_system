@@ -13,7 +13,7 @@ class LoginResponse implements LoginResponseContract
         return $request->wantsJson()
             ? response()->json(['two_factor' => false])
             : redirect()->intended(
-                auth()->user()->hasRole('admin') ? route('admin.index') : route('dashboard')
+                auth()->user()->hasRole('admin') ? route('dashboard') : route('dashboard')
             );
     }
 }

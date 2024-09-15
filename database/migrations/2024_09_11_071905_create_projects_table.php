@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('agency');
+            $table->foreignId('agency_id')->constrained()->cascadeOnDelete();
             $table->string('pic_agency');
             $table->integer('contract_period');
             $table->integer('warranty_period');

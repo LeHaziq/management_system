@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Agency;
 use App\Models\Project;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(RoleSeeder::class);
+        $this->call([
+            RoleSeeder::class,
+            CountriesTableSeeder::class,
+            StatesTableSeeder::class,
+            CitiesTableSeeder::class,
+        ]);
 
         User::create([
             'name' => 'admin',
@@ -22,6 +29,7 @@ class DatabaseSeeder extends Seeder
             'password' => '1234', // password
         ])->assignRole('admin');
 
+        Agency::factory()->count(5)->create();
         Project::factory()->count(20)->create();
     }
 }

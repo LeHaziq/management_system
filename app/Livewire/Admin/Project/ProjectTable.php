@@ -27,7 +27,7 @@ class ProjectTable extends BaseDataTable
         $title = TextColumn::make('title')
             ->label('Nama projek')
             ->searchable();
-        $agency = TextColumn::make('agency')
+        $agency = TextColumn::make('agency.name')
             ->label('Agensi')
             ->searchable()
             ->sortable();

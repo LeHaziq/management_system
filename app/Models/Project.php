@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\MoneyCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Project extends Model
 {
@@ -18,7 +19,7 @@ class Project extends Model
 
     protected $fillable = [
         'title',
-        'agency',
+        'agency_id',
         'pic_agency',
         'contract_period',
         'warranty_period',
@@ -30,4 +31,9 @@ class Project extends Model
         'creator',
         'status',
     ];
+
+    public function agency(): BelongsTo
+    {
+        return $this->belongsTo(Agency::class);
+    }
 }
