@@ -13,6 +13,7 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ProjectTable extends BaseDataTable
@@ -97,8 +98,7 @@ class ProjectTable extends BaseDataTable
                     ->modal()
                     ->modalWidth('w-full')
                     ->slideOver()
-                    ->modalHeading('Lihat Project')
-                    ->modalDescription('Lihat detail project')
+                    ->modalHeading('Maklumat Projek')
                     ->modalContent(fn(Project $record): View => view(
                         'web.admin.project.modal.details',
                         ['record' => $record],

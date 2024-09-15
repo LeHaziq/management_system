@@ -1,17 +1,17 @@
 <div class="bg-slate-100 p-4">
     <div class="font-bold text-xl">{{ $record->title }}</div>
-    <div class="text-slate-500">{{ $record->start_date->format('Y') }}</div>
+    <div class="text-slate-500">Tahun {{ $record->start_date->format('Y') }}</div>
     <br>
 
     <x-filament::section collapsible>
         <x-slot name="heading">
-            Maklumat Projek
+            Maklumat Agensi
         </x-slot>
 
         {{-- Content --}}
         <div class="grid grid-cols-3 gap-2 justify-items-start">
             <div class="text-md">Agensi:</div>
-            <div class="text-md font-bold col-span-2">{{ $record->agency }}</div>
+            <div class="text-md font-bold col-span-2">{{ $record->agency->name }}</div>
             <div class="text-md">PIC Agensi:</div>
             <div class="text-md font-bold col-span-2">{{ $record->pic_agency }}</div>
         </div>
