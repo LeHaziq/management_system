@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Agency;
+use App\Models\PICAgency;
 use App\Models\Project;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         ])->assignRole('admin');
 
         Agency::factory()->count(5)->create();
+        PICAgency::factory()->count(5)->create();
         Project::factory()->count(20)->create();
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('agency_id')->constrained()->cascadeOnDelete();
-            $table->string('pic_agency');
+            $table->foreignId('p_i_c_agency_id')->constrained()->cascadeOnDelete();
             $table->integer('contract_period');
             $table->integer('warranty_period');
             $table->date('start_date');

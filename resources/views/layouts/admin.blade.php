@@ -24,16 +24,16 @@
         <x-mysoftcare.navigations.navbar />
 
         <!-- Page Heading -->
-        @if (isset($header))
+        {{-- @if (isset($header))
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
         </header>
         @endif
-        @livewire('notifications')
+        @livewire('notifications') --}}
         <!-- Page Content -->
-        <main class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <main class="max-w-screen-xl px-4 py-3 mx-auto">
             {{ $slot }}
         </main>
     </div>

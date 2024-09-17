@@ -63,25 +63,44 @@
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-800 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                    <a href="#" class="rounded-md bg-gray-900 px-3 py-2 font-medium text-white" aria-current="page">Home</a>
+                @php
+                if (Auth::user()->hasRole('admin')) {
+                $links = [
+                ['name' => 'Utama', 'route' => 'dashboard'],
+                ['name' => 'Pengurusan Projek', 'route' => 'admin.project.index']
+                ];
 
+                } else {
+                $links = [
+                ['name' => 'Utama', 'route' => 'dashboard']
+                ];
+
+                }
+
+                @endphp
+                @foreach ($links as $link)
+                <x-navbar-link href="{{ route($link['route']) }}" :active="request()->routeIs($link['route'])">{{ $link['name'] }}</x-navbar-link>
+                @endforeach
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<nav class="bg-gray-50 dark:bg-gray-700">
+    <div class="max-w-screen-xl px-4 py-3 mx-auto">
+        <div class="flex items-center">
+            <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+                <li>
+                    <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Dashboard</a>
                 </li>
                 <li>
-                    <a href="#" class="rounded-md px-3 py-2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
-
+                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Projek</a>
                 </li>
                 <li>
-                    <a href="#" class="rounded-md px-3 py-2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Services</a>
-
+                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Agensi</a>
                 </li>
                 <li>
-                    <a href="#" class="rounded-md px-3 py-2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Pricing</a>
-
-                </li>
-                <li>
-                    <a href="#" class="rounded-md px-3 py-2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
-
+                    <a href="#" class="text-gray-900 dark:text-white hover:underline">PIC Agensi</a>
                 </li>
             </ul>
         </div>

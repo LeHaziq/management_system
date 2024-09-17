@@ -176,7 +176,7 @@ class ProjectForm extends BaseForm
                             ->native(false)
                             ->searchable()
                             ->placeholder('Pilih status projek')
-                            ->helperText('Staatus projek terkini')
+                            ->helperText('Status projek terkini')
                     ]),
             ])
             ->statePath('data')->inlineLabel();

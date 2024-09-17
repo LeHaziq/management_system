@@ -23,7 +23,7 @@ class ProjectFactory extends Factory
         return [
             'title' => $this->faker->jobTitle(),
             'agency_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
-            'pic_agency' => $this->faker->company(),
+            'p_i_c_agency_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'contract_period' => $this->faker->numberBetween(1, 12),
             'warranty_period' => $this->faker->numberBetween(1, 12),
             'start_date' => $startDate,

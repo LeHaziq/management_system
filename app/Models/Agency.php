@@ -29,4 +29,9 @@ class Agency extends Model
     {
         return $this->belongsTo(District::class);
     }
+
+    public function PICAgencies(): HasMany
+    {
+        return $this->hasMany(PICAgency::class);
+    }
 }
