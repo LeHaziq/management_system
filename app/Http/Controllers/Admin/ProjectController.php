@@ -11,7 +11,8 @@ class ProjectController extends Controller
     public function index()
     {
         $breadcrumbs = [
-            ['url' => '', 'label' => 'Pengurusan Projek']
+            ['url' => '', 'label' => 'Pengurusan Projek'],
+            ['url' => '', 'label' => 'Senarai Projek'],
         ];
 
         return view('web.admin.project.index', [
@@ -22,7 +23,8 @@ class ProjectController extends Controller
     public function create()
     {
         $breadcrumbs = [
-            ['url' => route('admin.project.index'), 'label' => 'Pengurusan Projek'],
+            ['url' => '', 'label' => 'Pengurusan Projek'],
+            ['url' => route('admin.project.index'), 'label' => 'Senarai Projek'],
             ['url' => '', 'label' => 'Tambah Projek'],
         ];
 
@@ -34,8 +36,9 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $breadcrumbs = [
-            ['url' => route('admin.project.index'), 'label' => 'Pengurusan Projek'],
-            ['url' => '', 'label' => 'Tambah Projek'],
+            ['url' => '', 'label' => 'Pengurusan Projek'],
+            ['url' => route('admin.project.index'), 'label' => 'Senarai Projek'],
+            ['url' => '', 'label' => 'Kemaskini Projek'],
         ];
 
         $project = Project::findOrFail($id);

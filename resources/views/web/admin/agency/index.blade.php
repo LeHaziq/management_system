@@ -6,6 +6,7 @@
     </x-slot>
     <div class="py-4">
         <x-mysoftcare.navigations.breadcrumb class="mb-4" :items="$breadcrumbs" />
-        <livewire:admin.project.project-table />
+        <livewire:admin.agency.agency-table />
     </div>
 </x-admin-layout>
+

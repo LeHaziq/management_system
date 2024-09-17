@@ -65,11 +65,14 @@
     <div class="max-w-screen-xl px-4 py-3 mx-auto">
         <div class="flex items-center">
             <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+                <li>
+                    <x-mysoftcare.navigations.navbar-sublink href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Utama</x-mysoftcare.navigations.navbar-sublink>
+                </li>
                 @php
                 if (Auth::user()->hasRole('admin')) {
                 $links = [
-                ['name' => 'Utama', 'route' => 'dashboard'],
-                ['name' => 'Pengurusan Projek', 'route' => 'admin.project.index']
+                ['name' => 'Senarai Projek', 'route' => 'admin.project.index'],
+                ['name' => 'Senarai Agensi', 'route' => 'admin.agency.index'],
                 ];
 
                 } else {
@@ -78,14 +81,22 @@
                 ];
 
                 }
-
                 @endphp
+                @role('admin')
+                <x-mysoftcare.navigations.navbar-dropdown :active="request()->routeIs('admin.project.index')">
 
-                @foreach ($links as $link)
-                <li>
-                    <x-navbar-sublink href="{{ route($link['route']) }}" :active="request()->routeIs($link['route'])">{{ $link['name'] }}</x-navbar-sublink>
-                </li>
-                @endforeach
+                    <x-slot:name>
+                        Pengurusan Projek
+                    </x-slot:name>
+                    @foreach ($links as $link)
+                    <li>
+                        <x-mysoftcare.navigations.dropdown-link href="{{ route( $link['route'] ) }}" >
+                            {{ $link['name'] }}
+                        </x-mysoftcare.navigations.dropdown-link>
+                    </li>
+                    @endforeach
+                </x-mysoftcare.navigations.navbar-dropdown>
+                @endrole
             </ul>
         </div>
     </div>

@@ -46,17 +46,18 @@ class ProjectForm extends BaseForm
                         Select::make('agency_id')
                             ->required()
                             ->label('Agensi')
+                            ->placeholder('Pilih Agensi')
                             ->options(Agency::pluck('name', 'id'))
                             ->searchable()
                             ->preload()
                             ->live()
                             ->createOptionForm([
-                                TextInput::make('name')->required(),
-                                TextInput::make('address')->required(),
-                                TextInput::make('address_2'),
-                                TextInput::make('address_3'),
+                                TextInput::make('name')->required()->label('Nama Agensi'),
+                                TextInput::make('address')->required()->label('Alamat 1'),
+                                TextInput::make('address_2')->label('Alamat 2'),
+                                TextInput::make('address_3')->label('Alamat 3'),
                                 Select::make('state_id')
-                                    ->label('State')
+                                    ->label('Negeri')
                                     ->required()
                                     ->options(State::pluck('name', 'id'))
                                     ->searchable()
@@ -65,7 +66,7 @@ class ProjectForm extends BaseForm
                                     ->afterStateUpdated(fn(callable $set) => $set('district_id', null)),
 
                                 Select::make('district_id')
-                                    ->label('District')
+                                    ->label('Daerah')
                                     ->required()
                                     ->options(function (callable $get) {
                                         $stateId = $get('state_id');
@@ -81,8 +82,8 @@ class ProjectForm extends BaseForm
                                     ->live()
                                     ->disabled(fn(callable $get) => !$get('state_id')),
                                 TextInput::make('zip_code')->required(),
-                                TextInput::make('phone')->required()->tel(),
-                                TextInput::make('email')->required()->email(),
+                                TextInput::make('phone')->required()->tel()->label('Telefon'),
+                                TextInput::make('email')->required()->email()->label('E-mel'),
                             ])
                             ->createOptionUsing(function (array $data) {
                                 // Combine address fields
