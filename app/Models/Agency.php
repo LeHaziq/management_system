@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Agency extends Model
 {
@@ -13,9 +14,12 @@ class Agency extends Model
 
     protected $fillable = [
         'name',
+        'address_1',
+        'address_2',
+        'address_3',
+        'state_id',
         'district_id',
-        'address',
-        'zip_code',
+        'postcode',
         'phone',
         'email',
     ];

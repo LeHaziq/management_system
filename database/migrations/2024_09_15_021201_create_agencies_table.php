@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('district_id')->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('address');
-            $table->char('zip_code');
+            $table->string('address_1');
+            $table->string('address_2');
+            $table->string('address_3');
+            $table->foreignId('state_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('district_id')->constrained()->cascadeOnDelete();
+            $table->char('postcode');
             $table->string('phone');
             $table->string('email');
             $table->timestamps();

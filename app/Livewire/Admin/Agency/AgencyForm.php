@@ -34,7 +34,10 @@ class AgencyForm extends BaseForm
                     ->description('Maklumat mengenai agensi')
                     ->schema([
                         TextInput::make('name')->required()->label('Nama Agensi')->columnSpan('full'),
-                        TextInput::make('address')->required()->label('Alamat 1')->columnSpan('full'),
+                        TextInput::make('address_1')
+                            ->required()
+                            ->label('Alamat 1')
+                            ->columnSpan('full'),
                         TextInput::make('address_2')->label('Alamat 2')->columnSpan('full'),
                         TextInput::make('address_3')->label('Alamat 3')->columnSpan('full'),
                         Select::make('state_id')
@@ -62,7 +65,7 @@ class AgencyForm extends BaseForm
                             ->preload()
                             ->live()
                             ->disabled(fn(callable $get) => !$get('state_id')),
-                        TextInput::make('zip_code')->required(),
+                        TextInput::make('postcode')->required(),
                         TextInput::make('phone')->required()->tel()->label('Telefon'),
                         TextInput::make('email')->required()->email()->label('E-mel')->columnSpan(2),
                     ])->columns(3),
@@ -73,6 +76,7 @@ class AgencyForm extends BaseForm
     public function save()
     {
         $this->form->getState();
+
         $this->agency->fill([
             ...$this->data,
         ])->save();

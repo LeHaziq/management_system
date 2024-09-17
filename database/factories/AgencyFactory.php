@@ -18,8 +18,11 @@ class AgencyFactory extends Factory
     {
         return [
             'name' => $this->faker->company(),
-            'address' => $this->faker->address(),
-            'zip_code' => $this->faker->postcode(),
+            'address_1' => $this->faker->address(),
+            'address_2' => $this->faker->address(),
+            'address_3' => $this->faker->address(),
+            'postcode' => $this->faker->postcode(),
+            'state_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'district_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),

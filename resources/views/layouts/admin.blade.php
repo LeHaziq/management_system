@@ -33,6 +33,7 @@
         @endif
         @livewire('notifications') --}}
         <!-- Page Content -->
+        @livewire('notifications')
         <main class="max-w-screen-xl px-4 py-3 mx-auto">
             {{ $slot }}
         </main>

@@ -14,7 +14,7 @@ class MalaysiaStateDistrictSeeder extends Seeder
     public function run(): void
     {
         $statesAndDistricts = [
-            'Federal Territory (Malaysia)' => [
+            'Wilayah Persekutuan' => [
                 'Kuala Lumpur',
                 'Putrajaya',
                 'Labuan',
