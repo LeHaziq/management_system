@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class City extends Model
+class ProjectMilestone extends Model
 {
     use HasFactory;
 
-    public function states(): BelongsTo
+    public function project(): BelongsTo
     {
-        return $this->belongsTo(State::class);
+        return $this->belongsTo(Project::class);
     }
 }

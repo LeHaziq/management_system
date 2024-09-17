@@ -47,4 +47,19 @@ class ProjectController extends Controller
             'project' => $project,
         ]);
     }
+
+    public function show($id)
+    {
+        $project = Project::findOrFail($id);
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Projek'],
+            ['url' => route('admin.project.index'), 'label' => 'Senarai Projek'],
+            ['url' => '', 'label' => $project->title],
+        ];
+
+        return view('web.admin.project.show', [
+            'breadcrumbs' => $breadcrumbs,
+            'record' => $project,
+        ]);
+    }
 }

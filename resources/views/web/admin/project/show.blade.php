@@ -11,7 +11,7 @@
             <div class="text-slate-500">Tahun {{ $record->start_date->format('Y') }}</div>
             <br>
 
-            <x-filament::section collapsible>
+            <x-filament::section>
                 <x-slot name="heading">
                     Maklumat Agensi
                 </x-slot>
@@ -26,7 +26,7 @@
             </x-filament::section>
             <br>
 
-            <x-filament::section collapsible>
+            <x-filament::section>
                 <x-slot name="heading">
                     Maklumat Kontrak
                 </x-slot>
@@ -34,9 +34,9 @@
                 {{-- Content --}}
                 <div class="grid grid-cols-3 gap-2 justify-items-start">
                     <div class="text-md">Tempoh Kontrak:</div>
-                    <div class="text-md font-bold col-span-2">{{ $record->contract_period }}</div>
+                    <div class="text-md font-bold col-span-2">{{ $record->contract_period }} bulan</div>
                     <div class="text-md">Tempoh Jaminan:</div>
-                    <div class="text-md font-bold col-span-2">{{ $record->warranty_period }}</div>
+                    <div class="text-md font-bold col-span-2">{{ $record->warranty_period }} bulan</div>
                     <div class="text-md">Tarikh Mula Kontrak:</div>
                     <div class="text-md font-bold col-span-2">{{ $record->start_date->format('d/m/Y') }}</div>
 
@@ -44,14 +44,15 @@
                     <div class="text-md font-bold col-span-2">{{ $record->end_date->format('d/m/Y') }}</div>
 
                     <div class="text-md">Nilai Kontrak:</div>
-                    <div class="text-md font-bold col-span-2">{{ number_format($record->price, 2) }} RM</div>
+                    <div class="text-md font-bold col-span-2">RM {{ number_format($record->price, 2) }}</div>
+
                     <div class="text-md">SST File:</div>
                     <a href="{{ $record->SST_file }}" class="text-md font-bold col-span-2">SST File</a>
                 </div>
             </x-filament::section>
             <br>
 
-            <x-filament::section collapsible>
+            <x-filament::section>
                 <x-slot name="heading">
                     Maklumat Tambahan
                 </x-slot>
@@ -80,6 +81,8 @@
 
                 </div>
             </x-filament::section>
+            <br>    
+            <livewire:admin.project.milestone-table />
         </div>
     </div>
 </x-admin-layout>

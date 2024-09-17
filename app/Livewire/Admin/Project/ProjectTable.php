@@ -95,14 +95,7 @@ class ProjectTable extends BaseDataTable
                 ViewAction::make()
                     ->label('Lihat')
                     ->icon(false)
-                    ->modal()
-                    ->modalWidth('w-full')
-                    ->slideOver()
-                    ->modalHeading('Maklumat Projek')
-                    ->modalContent(fn(Project $record): View => view(
-                        'web.admin.project.modal.details',
-                        ['record' => $record],
-                    )),
+                    ->url(fn(Project $record): string => route('admin.project.show', $record->id)),
                 ActionGroup::make([
                     EditAction::make()
                         ->label('Kemaskini')

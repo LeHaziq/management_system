@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire\Admin\Agency;
+namespace App\Livewire\Admin\Project;
 
 use App\Livewire\BaseDataTable;
-use App\Models\Agency;
-use Filament\Tables\Actions\CreateAction;
+use App\Models\ProjectMilestone;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
@@ -14,48 +14,45 @@ use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class AgencyTable extends BaseDataTable
+class MilestoneTable extends BaseDataTable
 {
     public function getQuery()
     {
-        return Agency::query()->latest();
+        return ProjectMilestone::query()->latest();
     }
 
     public function getColumns()
     {
-        $name = TextColumn::make('name')
+        $name = TextColumn::make('title')
             ->label('Nama Agensi')
             ->searchable();
-        $email = TextColumn::make('email')
+        $email = TextColumn::make('description')
             ->label('E-mel');
-        $phone = TextColumn::make('phone')
-            ->label('Telefon');
+        $progress = TextColumn::make('progress')
+            ->label('Progress');
 
         return [
             $name,
             $email,
-            $phone
+            $progress
         ];
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->heading('Senarai Agensi')
-            ->description('Kemaskini maklumat agensi di sini')
-            ->emptyStateHeading('Tiada rekod agensi')
+            ->heading('Perbatuan Projek')
+            ->emptyStateHeading('Tiada rekod perbatuan')
             ->headerActions([
                 CreateAction::make()
-                    ->label('Tambah Agensi')
+                    ->label('Tambah Perbatuan')
                     ->icon('heroicon-s-plus')
-                    ->url(fn(): string => route('admin.agency.create'))
+                    ->url(fn(): string => route('admin.project.create'))
                     ->color('info')
             ])
             ->query($this->getQuery())
             ->columns($this->getColumns())
-            ->filters([
-
-            ])
+            ->filters([])
             ->actions([
                 ViewAction::make()
                     ->label('Lihat')
@@ -64,7 +61,7 @@ class AgencyTable extends BaseDataTable
                     ->modalWidth('w-full')
                     ->slideOver()
                     ->modalHeading('Maklumat Projek')
-                    ->modalContent(fn(Agency $record): View => view(
+                    ->modalContent(fn(ProjectMilestone $record): View => view(
                         'web.admin.project.modal.details',
                         ['record' => $record],
                     )),
@@ -72,12 +69,12 @@ class AgencyTable extends BaseDataTable
                     EditAction::make()
                         ->label('Kemaskini')
                         ->icon(false)
-                        ->url(fn(Agency $record): string => route('admin.project.edit', $record->id)),
+                        ->url(fn(ProjectMilestone $record): string => route('admin.project.edit', $record->id)),
                     DeleteAction::make('delete')
-                    ->label('Padam')
-                    ->icon(false)
+                        ->label('Padam')
+                        ->icon(false)
                         ->requiresConfirmation()
-                        ->action(fn(Agency $record) => $record->delete())
+                        ->action(fn(ProjectMilestone $record) => $record->delete())
                         ->modalHeading('Padam Projek')
                         ->modalDescription('Adakah anda pasti ingin melakukan ini?')
                         ->modalCancelActionLabel('Tidak')
