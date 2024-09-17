@@ -13,4 +13,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/agensi', [AgencyController::class, 'index'])->name('agency.index');
     Route::get('/agensi/tambah', [AgencyController::class, 'create'])->name('agency.create');
+    Route::get('/agensi/kemaskini/{id}', [AgencyController::class, 'edit'])->name('agency.edit');
 });

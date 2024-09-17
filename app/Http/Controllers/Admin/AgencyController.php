@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agency;
 use Illuminate\Http\Request;
 
 class AgencyController extends Controller
@@ -28,6 +29,21 @@ class AgencyController extends Controller
 
         return view('web.admin.agency.create', [
             'breadcrumbs' => $breadcrumbs,
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $agency = Agency::findOrFail($id);
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Projek'],
+            ['url' => route('admin.agency.index'), 'label' => 'Senarai Agensi'],
+            ['url' => '', 'label' => 'Kemaskini Agensi'],
+        ];
+
+        return view('web.admin.agency.edit', [
+            'breadcrumbs' => $breadcrumbs,
+            'agency' => $agency,
         ]);
     }
 }

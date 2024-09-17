@@ -72,7 +72,7 @@ class AgencyTable extends BaseDataTable
                     EditAction::make()
                         ->label('Kemaskini')
                         ->icon(false)
-                        ->url(fn(Agency $record): string => route('admin.project.edit', $record->id)),
+                        ->url(fn(Agency $record): string => route('admin.agency.edit', $record->id)),
                     DeleteAction::make('delete')
                     ->label('Padam')
                     ->icon(false)
