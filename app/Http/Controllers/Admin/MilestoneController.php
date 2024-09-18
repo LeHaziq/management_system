@@ -16,7 +16,7 @@ class MilestoneController extends Controller
         $breadcrumbs = [
             ['url' => '', 'label' => 'Pengurusan Projek'],
             ['url' => route('admin.project.index'), 'label' => 'Senarai Projek'],
-            ['url' => '', 'label' => $project->title],
+            ['url' => route('admin.project.show', $project->id), 'label' => $project->title],
             ['url' => '', 'label' => 'Tambah Perbatuan'],
         ];
 
@@ -34,7 +34,7 @@ class MilestoneController extends Controller
         $breadcrumbs = [
             ['url' => '', 'label' => 'Pengurusan Projek'],
             ['url' => route('admin.project.index'), 'label' => 'Senarai Projek'],
-            ['url' => '', 'label' => $project->title],
+            ['url' => route('admin.project.show', $project->id), 'label' => $project->title],
             ['url' => '', 'label' => 'Kemaskini Perbatuan'],
         ];
 
