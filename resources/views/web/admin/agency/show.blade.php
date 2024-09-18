@@ -48,6 +48,6 @@
             </div>
         </x-filament::section>
         <br>
-        <livewire:admin.agency.pic-agency-table />
+        <livewire:admin.agency.pic-agency-table :agency_id="$record->id" />
     </div>
 </x-admin-layout>

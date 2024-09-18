@@ -34,8 +34,7 @@ class MilestoneTable extends BaseDataTable
     public function getColumns()
     {
         $name = TextColumn::make('title')
-            ->label('Perbatuan')
-            ->searchable();
+            ->label('Perbatuan');
         $email = TextColumn::make('description')
             ->label('Penerangan');
         $start_date = TextColumn::make('start_date')

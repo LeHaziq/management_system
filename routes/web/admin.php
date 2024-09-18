@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\AgencyController;
 use App\Http\Controllers\Admin\MilestoneController;
+use App\Http\Controllers\Admin\PICAgencyController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -19,5 +20,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/agensi/tambah', [AgencyController::class, 'create'])->name('agency.create');
     Route::get('/agensi/kemaskini/{id}', [AgencyController::class, 'edit'])->name('agency.edit');
     Route::get('/agensi/{id}', [AgencyController::class, 'show'])->name('agency.show');
+
+    Route::get('/pic-agensi', [PICAgencyController::class, 'index'])->name('agency.pic.index');
+    Route::get('/pic-agensi/tambah/{agency_id}', [PicAgencyController::class, 'create'])->name('agency.pic.create');
+    Route::get('/pic-agensi/kemaskini/{id}', [PICAgencyController::class, 'edit'])->name('agency.pic.edit');
+    Route::get('/pic-agensi/{id}', [PICAgencyController::class, 'show'])->name('agency.pic.show');
 });
 

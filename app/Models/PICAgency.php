@@ -12,6 +12,14 @@ class PICAgency extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'position',
+        'agency_id',
+    ];
+
     public function agency(): BelongsTo
     {
         return $this->belongsTo(Agency::class);
