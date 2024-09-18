@@ -12,7 +12,7 @@ class PICAgency extends Model
 {
     use HasFactory;
 
-    public function agencies(): BelongsTo
+    public function agency(): BelongsTo
     {
         return $this->belongsTo(Agency::class);
     }

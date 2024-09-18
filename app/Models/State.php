@@ -11,12 +11,12 @@ class State extends Model
 {
     use HasFactory;
 
-    public function districts(): HasMany
+    public function district(): HasMany
     {
         return $this->hasMany(District::class);
     }
 
-    public function countries(): BelongsTo
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }

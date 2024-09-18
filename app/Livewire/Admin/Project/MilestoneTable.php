@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Project;
 
 use App\Livewire\BaseDataTable;
+use App\Models\Project;
 use App\Models\ProjectMilestone;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
@@ -16,18 +17,27 @@ use Livewire\Component;
 
 class MilestoneTable extends BaseDataTable
 {
+    public $project_id;
+
+    public function mount($project_id)
+    {
+        $this->project_id = $project_id;
+    }
+
     public function getQuery()
     {
-        return ProjectMilestone::query()->latest();
+        return ProjectMilestone::query()
+            ->where('project_id', $this->project_id)
+            ->latest();
     }
 
     public function getColumns()
     {
         $name = TextColumn::make('title')
-            ->label('Nama Agensi')
+            ->label('Perbatuan')
             ->searchable();
         $email = TextColumn::make('description')
-            ->label('E-mel');
+            ->label('Penerangan');
         $progress = TextColumn::make('progress')
             ->label('Progress');
 
@@ -47,7 +57,7 @@ class MilestoneTable extends BaseDataTable
                 CreateAction::make()
                     ->label('Tambah Perbatuan')
                     ->icon('heroicon-s-plus')
-                    ->url(fn(): string => route('admin.project.create'))
+                    ->url(fn(): string => route('admin.milestone.create', ['project_id' => $this->project_id]))
                     ->color('info')
             ])
             ->query($this->getQuery())
@@ -69,7 +79,7 @@ class MilestoneTable extends BaseDataTable
                     EditAction::make()
                         ->label('Kemaskini')
                         ->icon(false)
-                        ->url(fn(ProjectMilestone $record): string => route('admin.project.edit', $record->id)),
+                        ->url(fn(ProjectMilestone $record): string => route('admin.milestone.edit', ['project_id' => $record->project_id, 'milestone_id' => $record->id])),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)

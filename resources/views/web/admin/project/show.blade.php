@@ -19,7 +19,9 @@
                 {{-- Content --}}
                 <div class="grid grid-cols-3 gap-2 justify-items-start">
                     <div class="text-md">Agensi:</div>
-                    <div class="text-md font-bold col-span-2">{{ $record->agency->name }}</div>
+                    <x-mysoftcare.navigations.navbar-sublink href="{{ route('admin.agency.show', $record->agency->id) }}" class=" col-span-2" :active="request()->routeIs('admin.agency.show')">
+                        {{ $record->agency->name }}
+                    </x-mysoftcare.navigations.navbar-sublink>
                     <div class="text-md">PIC Agensi:</div>
                     <div class="text-md font-bold col-span-2">{{ $record->pic_agency }}</div>
                 </div>
@@ -81,8 +83,23 @@
 
                 </div>
             </x-filament::section>
-            <br>    
-            <livewire:admin.project.milestone-table />
+            <br>
+            <livewire:admin.project.milestone-table :project_id="$record->id" />
+            <x-filament::tabs label="Content tabs">
+                <x-filament::tabs.item>
+                    Tab 1
+                </x-filament::tabs.item>
+
+                <x-filament::tabs.item>
+                    Tab 2
+                </x-filament::tabs.item>
+
+                <x-filament::tabs.item>
+                    Tab 3
+                </x-filament::tabs.item>
+            </x-filament::tabs>
+
+
         </div>
     </div>
 </x-admin-layout>

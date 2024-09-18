@@ -18,7 +18,7 @@ class AgencyTable extends BaseDataTable
 {
     public function getQuery()
     {
-        return Agency::query()->latest();
+        return Agency::query()->with('district.state');
     }
 
     public function getColumns()
@@ -60,14 +60,7 @@ class AgencyTable extends BaseDataTable
                 ViewAction::make()
                     ->label('Lihat')
                     ->icon(false)
-                    ->modal()
-                    ->modalWidth('w-full')
-                    ->slideOver()
-                    ->modalHeading('Maklumat Projek')
-                    ->modalContent(fn(Agency $record): View => view(
-                        'web.admin.project.modal.details',
-                        ['record' => $record],
-                    )),
+                    ->url(fn(Agency $record): string => route('admin.agency.show', $record->id)),
                 ActionGroup::make([
                     EditAction::make()
                         ->label('Kemaskini')

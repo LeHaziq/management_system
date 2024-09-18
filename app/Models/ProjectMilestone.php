@@ -10,6 +10,15 @@ class ProjectMilestone extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'project_id',
+        'title',
+        'description',
+        'start_date',
+        'end_date',
+        'progress',
+        'isCompleted',
+    ];
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);

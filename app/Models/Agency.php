@@ -24,7 +24,7 @@ class Agency extends Model
         'email',
     ];
 
-    public function projects(): HasMany
+    public function project(): HasMany
     {
         return $this->hasMany(Project::class);
     }
@@ -34,7 +34,7 @@ class Agency extends Model
         return $this->belongsTo(District::class);
     }
 
-    public function PICAgencies(): HasMany
+    public function PICAgency(): HasMany
     {
         return $this->hasMany(PICAgency::class);
     }

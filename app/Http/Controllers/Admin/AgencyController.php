@@ -46,4 +46,19 @@ class AgencyController extends Controller
             'agency' => $agency,
         ]);
     }
+
+    public function show($id)
+    {
+        $agency = Agency::findOrFail($id);
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Projek'],
+            ['url' => route('admin.agency.index'), 'label' => 'Senarai Agensi'],
+            ['url' => '', 'label' => $agency->name],
+        ];
+
+        return view('web.admin.agency.show', [
+            'breadcrumbs' => $breadcrumbs,
+            'record' => $agency,
+        ]);
+    }
 }

@@ -53,7 +53,7 @@ class ProjectForm extends BaseForm
                             ->live()
                             ->createOptionForm([
                                 TextInput::make('name')->required()->label('Nama Agensi'),
-                                TextInput::make('address')->required()->label('Alamat 1'),
+                                TextInput::make('address_1')->required()->label('Alamat 1'),
                                 TextInput::make('address_2')->label('Alamat 2'),
                                 TextInput::make('address_3')->label('Alamat 3'),
                                 Select::make('state_id')
@@ -81,27 +81,12 @@ class ProjectForm extends BaseForm
                                     ->preload()
                                     ->live()
                                     ->disabled(fn(callable $get) => !$get('state_id')),
-                                TextInput::make('zip_code')->required(),
+                                TextInput::make('postcode')->required(),
                                 TextInput::make('phone')->required()->tel()->label('Telefon'),
                                 TextInput::make('email')->required()->email()->label('E-mel'),
                             ])
                             ->createOptionUsing(function (array $data) {
-                                // Combine address fields
-                                $fullAddress = implode(', ', array_filter([
-                                    $data['address'],
-                                    $data['address_2'] ?? null,
-                                    $data['address_3'] ?? null
-                                ]));
-
-                                // Create new Agency with combined address
-                                $agency = Agency::create([
-                                    'name' => $data['name'],
-                                    'address' => $fullAddress,
-                                    'district_id' => $data['district_id'],
-                                    'zip_code' => $data['zip_code'],
-                                    'phone' => $data['phone'],
-                                    'email' => $data['email'],
-                                ]);
+                                $agency = Agency::create($data);
 
                                 Notification::make()
                                     ->title('Success')

@@ -10,7 +10,7 @@ class District extends Model
 {
     use HasFactory;
 
-    public function states(): BelongsTo
+    public function state(): BelongsTo
     {
         return $this->belongsTo(State::class);
     }
