@@ -38,12 +38,22 @@ class MilestoneTable extends BaseDataTable
             ->searchable();
         $email = TextColumn::make('description')
             ->label('Penerangan');
+        $start_date = TextColumn::make('start_date')
+            ->label('Tarikh Mula Perbatuan')
+            ->sortable()
+            ->formatStateUsing(fn($state) => $state->format('d/m/Y'));
+        $end_date = TextColumn::make('end_date')
+            ->label('Tarikh Tamat Perbatuan')
+            ->sortable()
+            ->formatStateUsing(fn($state) => $state->format('d/m/Y'));
         $progress = TextColumn::make('progress')
             ->label('Progress');
 
         return [
             $name,
             $email,
+            $start_date,
+            $end_date,
             $progress
         ];
     }

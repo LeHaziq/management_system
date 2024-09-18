@@ -13,8 +13,10 @@
             <div class="grid grid-cols-3 gap-2 justify-items-start">
                 <div class="text-md">Agensi:</div>
                 <div class="text-md font-bold col-span-2">{{ $record->name }}</div>
-                <div class="text-md">PIC Agensi:</div>
-                <div class="text-md font-bold col-span-2">{{ $record->pic_agency }}</div>
+                <div class="text-md">Telefon:</div>
+                <div class="text-md font-bold col-span-2">{{ $record->phone }}</div>
+                <div class="text-md">E-mel:</div>
+                <div class="text-md font-bold col-span-2">{{ $record->email }}</div>
             </div>
         </x-filament::section>
         <br>
@@ -46,21 +48,6 @@
             </div>
         </x-filament::section>
         <br>
-        <x-filament::section collapsible>
-
-            <x-slot name="heading">
-                Maklumat Hubungan
-            </x-slot>
-
-            {{-- Content --}}
-            <div class="grid grid-cols-3 gap-2 justify-items-start">
-                <div class="text-md">Telefon:</div>
-                <div class="text-md font-bold col-span-2">{{ $record->phone }}</div>
-                <div class="text-md">E-mel:</div>
-                <div class="text-md font-bold col-span-2">{{ $record->email }}</div>
-
-            </div>
-        </x-filament::section>
-
+        <livewire:admin.agency.pic-agency-table />
     </div>
 </x-admin-layout>

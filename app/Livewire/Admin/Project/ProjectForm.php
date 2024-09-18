@@ -96,7 +96,7 @@ class ProjectForm extends BaseForm
 
                                 return $agency->id;
                             }),
-                        TextInput::make('pic_agency')
+                        TextInput::make('p_i_c_agency_id')
                             ->required()
                             ->label('PIC Agensi'),
                     ]),
