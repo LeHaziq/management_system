@@ -85,21 +85,6 @@
             </x-filament::section>
             <br>
             <livewire:admin.project.milestone-table :project_id="$record->id" />
-            <x-filament::tabs label="Content tabs">
-                <x-filament::tabs.item>
-                    Tab 1
-                </x-filament::tabs.item>
-
-                <x-filament::tabs.item>
-                    Tab 2
-                </x-filament::tabs.item>
-
-                <x-filament::tabs.item>
-                    Tab 3
-                </x-filament::tabs.item>
-            </x-filament::tabs>
-
-
         </div>
     </div>
 </x-admin-layout>
