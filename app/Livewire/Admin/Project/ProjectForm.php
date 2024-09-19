@@ -96,9 +96,6 @@ class ProjectForm extends BaseForm
 
                                 return $agency->id;
                             }),
-                        TextInput::make('p_i_c_agency_id')
-                            ->required()
-                            ->label('PIC Agensi'),
                     ]),
 
                 // Contract Details

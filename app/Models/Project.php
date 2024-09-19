@@ -20,7 +20,6 @@ class Project extends Model
     protected $fillable = [
         'title',
         'agency_id',
-        'pic_agency',
         'contract_period',
         'warranty_period',
         'start_date',
