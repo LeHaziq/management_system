@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address_1');
-            $table->string('address_2');
-            $table->string('address_3');
-            $table->foreignId('state_id')->constrained()->cascadeOnDelete();
+            $table->string('address_2')->nullable();
+            $table->string('address_3')->nullable();
             $table->foreignId('district_id')->constrained()->cascadeOnDelete();
             $table->char('postcode');
             $table->string('phone');

@@ -22,7 +22,6 @@ class AgencyFactory extends Factory
             'address_2' => $this->faker->address(),
             'address_3' => $this->faker->address(),
             'postcode' => $this->faker->postcode(),
-            'state_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'district_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),

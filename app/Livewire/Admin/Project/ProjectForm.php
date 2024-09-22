@@ -19,6 +19,9 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
+use Carbon\Carbon;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Set;
 
 class ProjectForm extends BaseForm
 {
@@ -101,28 +104,29 @@ class ProjectForm extends BaseForm
                 // Contract Details
                 Section::make('Maklumat Kontrak')
                     ->schema([
-                        TextInput::make('contract_period')
-                            ->required()
-                            ->integer()
-                            ->label('Tempoh Kontrak')
-                            ->helperText('Bulan'),
-                        TextInput::make('warranty_period')
-                            ->required()
-                            ->integer()
-                            ->label('Tempoh Jaminan')
-                            ->helperText('Bulan'),
                         DatePicker::make('start_date')
                             ->required()
                             ->label('Tarikh Mula Kontrak')
                             ->native(false)
                             ->placeholder('dd/mm/yyyy')
-                            ->suffixIcon('heroicon-s-calendar'),
+                            ->suffixIcon('heroicon-s-calendar')->afterStateUpdated(function (Get $get, Set $set) {
+                                $this->calculateContractPeriod($get, $set);
+                            }),
                         DatePicker::make('end_date')
                             ->required()
                             ->label('Tarikh Tamat Kontrak')
                             ->native(false)
                             ->placeholder('dd/mm/yyyy')
-                            ->suffixIcon('heroicon-s-calendar'),
+                            ->suffixIcon('heroicon-s-calendar')
+                            ->afterStateUpdated(function (Get $get, Set $set) {
+                                $this->calculateContractPeriod($get, $set);
+                            }),
+                        Hidden::make('contract_period'),
+                        TextInput::make('warranty_period')
+                            ->required()
+                            ->integer()
+                            ->label('Tempoh Jaminan')
+                            ->helperText('Bulan'),
                     ]),
 
                 // Financial Information
@@ -165,19 +169,31 @@ class ProjectForm extends BaseForm
             ->statePath('data')->inlineLabel();
     }
 
+    private function calculateContractPeriod(Get $get, Set $set): void
+    {
+        $startDate = $get('start_date');
+        $endDate = $get('end_date');
+
+        if ($startDate && $endDate) {
+            $startDate = Carbon::parse($startDate);
+            $endDate = Carbon::parse($endDate);
+
+            $diffInMonths = $startDate->diffInMonths($endDate);
+
+            $set('contract_period', $diffInMonths);
+        }
+    }
+
     public function save()
     {
-        $this->form->getState();
-        $this->project->fill([
-            ...$this->data,
-        ])->save();
+        $state = $this->form->getState();
 
-        // if ($this->form->validate()) {
-        //     if (!$this->project->exists) {
-        //         Project::create($this->form->getState());
-        //     } else {
-        //         $this->project->fill($this->form->getState())->save();
-        //     }
+        // Recalculate contract period before saving
+        $startDate = Carbon::parse($state['start_date']);
+        $endDate = Carbon::parse($state['end_date']);
+        $state['contract_period'] = $startDate->diffInMonths($endDate);
+
+        $this->project->fill($state)->save();
 
         Notification::make()
             ->title('Berjaya')

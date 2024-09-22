@@ -17,7 +17,6 @@ class Agency extends Model
         'address_1',
         'address_2',
         'address_3',
-        'state_id',
         'district_id',
         'postcode',
         'phone',

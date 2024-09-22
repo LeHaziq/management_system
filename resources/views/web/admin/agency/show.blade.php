@@ -38,7 +38,7 @@
                 <div class="text-md font-bold col-span-2">{{ $record->district->state->name }}</div>
                 <div class="text-md">Daerah:</div>
                 <div class="text-md font-bold col-span-2">{{ $record->district->name }}</div>
-                <div class="text-md">Postcode:</div>
+                <div class="text-md">Poskod:</div>
                 <div class="text-md font-bold col-span-2">{{ $record->postcode }}</div>
                 <div class="text-md">Telefon:</div>
                 <div class="text-md font-bold col-span-2">{{ $record->phone }}</div>
