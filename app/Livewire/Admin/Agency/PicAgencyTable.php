@@ -71,6 +71,7 @@ class PicAgencyTable extends BaseDataTable
                     ->label('Tambah PIC')
                     ->icon('heroicon-s-plus')
                     ->modalHeading('Tambah PIC Agensi')
+                    ->slideOver()
                     ->form(function () {
                         $fields = [
                             TextInput::make('name')
