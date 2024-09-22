@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('admin')) {
-            return view('web.admin.index');
+            return view('web.admin.dashboard.index');
         }
 
         return view('dashboard');
