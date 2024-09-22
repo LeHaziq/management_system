@@ -111,7 +111,8 @@ class PicAgencyTable extends BaseDataTable
                 ViewAction::make()
                     ->label('Lihat')
                     ->icon(false)
-                    ->modalContent(fn(PICAgency $record): string => view('admin.pic_agency.show', compact('record'))->render()),
+                    ->modalHeading('Maklumat PIC Agensi')
+                    ->modalContent(fn(PICAgency $record) => view('web.admin.pic.show', compact('record'))),
                 ActionGroup::make([
                     EditAction::make()
                         ->label('Kemaskini')

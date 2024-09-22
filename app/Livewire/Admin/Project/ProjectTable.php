@@ -32,7 +32,7 @@ class ProjectTable extends BaseDataTable
             ->label('Agensi')
             ->searchable()
             ->sortable()
-            ->toggleable('hidden');
+            ->toggleable();
         $start_date = TextColumn::make('start_date')
             ->label('Tarikh Mula Kontrak')
             ->sortable()

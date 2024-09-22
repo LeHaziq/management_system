@@ -68,6 +68,8 @@
                     $links = [
                     ['name' => 'Senarai Projek', 'route' => 'admin.project.index'],
                     ['name' => 'Senarai Agensi', 'route' => 'admin.agency.index'],
+                    ['name' => 'Senarai PIC', 'route' => 'admin.agency.index'],
+
                     ];
 
                     } else {
