@@ -18,10 +18,20 @@ class AgencyForm extends BaseForm
 {
     public ?Agency $agency = null;
 
-    public function mount(): void
+    public function mount(Agency $agency = null): void
     {
-        $this->agency ??= new Agency();
-        $this->data = $this->agency->toArray();
+        if ($agency) {
+            $this->agency = $agency;
+            $this->data = $this->agency->toArray();
+            $defaultState = $this->agency->district->state;
+            if ($defaultState) {
+                $this->data['state_id'] = $defaultState->id;
+            }
+        } else {
+            $this->agency = new Agency();
+            $this->data = [];
+        }
+
         $this->form->fill($this->data);
     }
 

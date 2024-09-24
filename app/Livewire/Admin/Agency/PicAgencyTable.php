@@ -54,6 +54,7 @@ class PicAgencyTable extends BaseDataTable
         if (!$this->agency_id) {
             $columns[] = TextColumn::make('agency.name')
                 ->label('Agensi')
+                ->sortable()
                 ->searchable();
         }
 

@@ -5,6 +5,9 @@ namespace App\Livewire\Admin\Project;
 use App\Livewire\BaseDataTable;
 use App\Models\Project;
 use App\Models\ProjectMilestone;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
@@ -35,8 +38,6 @@ class MilestoneTable extends BaseDataTable
     {
         $name = TextColumn::make('title')
             ->label('Perbatuan');
-        $email = TextColumn::make('description')
-            ->label('Penerangan');
         $start_date = TextColumn::make('start_date')
             ->label('Tarikh Mula Perbatuan')
             ->sortable()
@@ -50,7 +51,6 @@ class MilestoneTable extends BaseDataTable
 
         return [
             $name,
-            $email,
             $start_date,
             $end_date,
             $progress
@@ -66,8 +66,31 @@ class MilestoneTable extends BaseDataTable
                 CreateAction::make()
                     ->label('Tambah Perbatuan')
                     ->icon('heroicon-s-plus')
-                    ->url(fn(): string => route('admin.milestone.create', ['project_id' => $this->project_id]))
                     ->color('info')
+                    ->modalHeading('Tambah Perbatuan Baru')
+                    ->form([
+                        TextInput::make('title')
+                            ->label('Perbatuan')
+                            ->required(),
+                        Textarea::make('description')
+                            ->label('Penerangan')
+                            ->required(),
+                        DatePicker::make('start_date')
+                            ->label('Tarikh Mula Perbatuan')
+                            ->required(),
+                        DatePicker::make('end_date')
+                            ->label('Tarikh Tamat Perbatuan')
+                            ->required(),
+                        TextInput::make('progress')
+                            ->label('Progress')
+                            ->required(),
+                    ])
+                    ->action(function (array $data): void {
+                        ProjectMilestone::create([
+                            ...$data,
+                            'project_id' => $this->project_id,
+                        ]);
+                    })
             ])
             ->query($this->getQuery())
             ->columns($this->getColumns())
