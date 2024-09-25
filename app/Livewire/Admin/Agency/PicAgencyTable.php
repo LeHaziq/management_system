@@ -118,27 +118,36 @@ class PicAgencyTable extends BaseDataTable
                     EditAction::make()
                         ->label('Kemaskini')
                         ->icon(false)
-                        ->form([
-                            TextInput::make('name')
-                                ->label('Nama PIC')
-                                ->required(),
-                            TextInput::make('phone')
-                                ->label('Telefon')
-                                ->required(),
-                            TextInput::make('email')
-                                ->label('E-mel')
-                                ->email()
-                                ->required(),
-                            TextInput::make('position')
-                                ->label('Jawatan')
-                                ->required(),
-                            $this->agency_id ? null : Select::make('agency_id')
-                                ->label('Agensi')
-                                ->options(Agency::pluck('name', 'id'))
-                                ->searchable()
-                                ->required(),
-                        ])
-                        ->action(function (PICAgency $record, array $data) {
+                        ->modalHeading('Kemaskini PIC Agensi')
+                        ->slideOver()
+                        ->form(function ($livewire) {
+                            $formComponents = [
+                                TextInput::make('name')
+                                    ->label('Nama PIC')
+                                    ->required(),
+                                TextInput::make('phone')
+                                    ->label('Telefon')
+                                    ->required(),
+                                TextInput::make('email')
+                                    ->label('E-mel')
+                                    ->email()
+                                    ->required(),
+                                TextInput::make('position')
+                                    ->label('Jawatan')
+                                    ->required(),
+                            ];
+
+                            if (!$this->agency_id) {
+                                $formComponents[] = Select::make('agency_id')
+                                    ->label('Agensi')
+                                    ->options(Agency::pluck('name', 'id'))
+                                    ->searchable()
+                                    ->required();
+                            }
+
+                            return $formComponents;
+                        })
+                        ->action(function (PICAgency $record, array $data): void {
                             $record->update($data);
                         }),
                     DeleteAction::make('delete')

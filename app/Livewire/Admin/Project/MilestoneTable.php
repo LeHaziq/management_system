@@ -68,6 +68,7 @@ class MilestoneTable extends BaseDataTable
                     ->icon('heroicon-s-plus')
                     ->color('info')
                     ->modalHeading('Tambah Perbatuan Baru')
+                    ->slideOver()
                     ->form([
                         TextInput::make('title')
                             ->label('Perbatuan')
@@ -100,24 +101,43 @@ class MilestoneTable extends BaseDataTable
                     ->label('Lihat')
                     ->icon(false)
                     ->modal()
-                    ->modalWidth('w-full')
-                    ->slideOver()
-                    ->modalHeading('Maklumat Projek')
+                    ->modalHeading('Maklumat Perbatuan')
                     ->modalContent(fn(ProjectMilestone $record): View => view(
-                        'web.admin.project.modal.details',
+                        'web.admin.milestone.show',
                         ['record' => $record],
                     )),
                 ActionGroup::make([
                     EditAction::make()
                         ->label('Kemaskini')
                         ->icon(false)
-                        ->url(fn(ProjectMilestone $record): string => route('admin.milestone.edit', ['project_id' => $record->project_id, 'milestone_id' => $record->id])),
+                        ->modalHeading('Kemaskini Perbatuan')
+                        ->slideOver()
+                        ->form([
+                            TextInput::make('title')
+                                ->label('Perbatuan')
+                                ->required(),
+                            Textarea::make('description')
+                                ->label('Penerangan')
+                                ->required(),
+                            DatePicker::make('start_date')
+                                ->label('Tarikh Mula Perbatuan')
+                                ->required(),
+                            DatePicker::make('end_date')
+                                ->label('Tarikh Tamat Perbatuan')
+                                ->required(),
+                            TextInput::make('progress')
+                                ->label('Progress')
+                                ->required(),
+                        ])
+                        ->action(function (ProjectMilestone $record, array $data): void {
+                            $record->update($data);
+                        }),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)
                         ->requiresConfirmation()
                         ->action(fn(ProjectMilestone $record) => $record->delete())
-                        ->modalHeading('Padam Projek')
+                        ->modalHeading('Padam Perbatuan')
                         ->modalDescription('Adakah anda pasti ingin melakukan ini?')
                         ->modalCancelActionLabel('Tidak')
                         ->modalSubmitActionLabel('Ya'),

@@ -45,4 +45,22 @@ class MilestoneController extends Controller
             'milestone_id'
         ));
     }
+
+    public function show($project_id, $milestone_id)
+    {
+        $project = Project::findOrFail($project_id);
+        $record = ProjectMilestone::findOrFail($milestone_id);
+
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Projek'],
+            ['url' => route('admin.project.index'), 'label' => 'Senarai Projek'],
+            ['url' => route('admin.project.show', $project->id), 'label' => $project->title],
+            ['url' => '', 'label' => $record->title],
+        ];
+
+        return view('web.admin.milestone.show', compact(
+            'breadcrumbs',
+            'record',
+        ));
+    }
 }

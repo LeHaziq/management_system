@@ -1,9 +1,4 @@
 <x-admin-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pengurusan Projek') }}
-        </h2>
-    </x-slot>
     <div class="py-4">
         <x-mysoftcare.navigations.breadcrumb class="mb-4" :items="$breadcrumbs" />
         {{-- <div class="bg-slate-100 p-4"> --}}

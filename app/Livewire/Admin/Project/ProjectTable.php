@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Project;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Project;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\CreateAction;
@@ -100,6 +101,10 @@ class ProjectTable extends BaseDataTable
                 ActionGroup::make([
                     EditAction::make()
                         ->label('Kemaskini')
+                        ->icon(false)
+                        ->url(fn(Project $record): string => route('admin.project.edit', $record->id)),
+                    Action::make('assign')
+                        ->label('Penugasan Projek')
                         ->icon(false)
                         ->url(fn(Project $record): string => route('admin.project.edit', $record->id)),
                     DeleteAction::make('delete')

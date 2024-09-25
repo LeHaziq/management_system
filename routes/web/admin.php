@@ -15,6 +15,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/perbatuan/{project_id}', [MilestoneController::class, 'create'])->name('milestone.create');
     Route::get('/perbatuan/kemaskini/{project_id}/{milestone_id}', [MilestoneController::class, 'edit'])->name('milestone.edit');
+    Route::get('/perbatuan/{project_id}/{milestone_id}', [MilestoneController::class, 'show'])->name('milestone.show');
 
     Route::get('/agensi', [AgencyController::class, 'index'])->name('agency.index');
     Route::get('/agensi/tambah', [AgencyController::class, 'create'])->name('agency.create');

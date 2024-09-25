@@ -71,7 +71,7 @@ class AgencyTable extends BaseDataTable
                     ->icon(false)
                         ->requiresConfirmation()
                         ->action(fn(Agency $record) => $record->delete())
-                        ->modalHeading('Padam Projek')
+                        ->modalHeading('Padam Agensi')
                         ->modalDescription('Adakah anda pasti ingin melakukan ini?')
                         ->modalCancelActionLabel('Tidak')
                         ->modalSubmitActionLabel('Ya'),
