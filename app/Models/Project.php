@@ -6,6 +6,7 @@ use App\Casts\MoneyCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
@@ -34,5 +35,15 @@ class Project extends Model
     public function agency(): BelongsTo
     {
         return $this->belongsTo(Agency::class);
+    }
+
+    public function milestone(): HasMany
+    {
+        return $this->hasMany(ProjectMilestone::class);
+    }
+
+    public function assignment(): HasMany
+    {
+        return $this->hasMany(ProjectAssignment::class);
     }
 }

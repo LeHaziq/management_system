@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ProjectMilestone extends Model
 {
     use HasFactory;
-    
+
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
@@ -24,6 +24,7 @@ class ProjectMilestone extends Model
         'progress',
         'isCompleted',
     ];
+
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
