@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\AgencyController;
+use App\Http\Controllers\Admin\InternController;
 use App\Http\Controllers\Admin\MilestoneController;
 use App\Http\Controllers\Admin\PICAgencyController;
 use App\Http\Controllers\Admin\ProjectAssignmentController;
@@ -29,5 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/pic-agensi/tambah/{agency_id}', [PicAgencyController::class, 'create'])->name('agency.pic.create');
     Route::get('/pic-agensi/kemaskini/{id}', [PICAgencyController::class, 'edit'])->name('agency.pic.edit');
     Route::get('/pic-agensi/{id}', [PICAgencyController::class, 'show'])->name('agency.pic.show');
+
+    Route::get('/industri', [InternController::class, 'index'])->name('intern.index');
 });
 
