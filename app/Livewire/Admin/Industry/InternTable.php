@@ -37,9 +37,10 @@ class InternTable extends BaseDataTable
             ->heading('Senarai Pelatih Industri')
             ->description('Kemaskini maklumat pelatih di sini')
             ->emptyStateHeading('Tiada rekod pelatih')
+            ->emptyStateDescription('Sila tambah pelatih terlebih dahulu')
             ->headerActions([
                 CreateAction::make()
-                    ->label('Tambah Projek')
+                    ->label('Tambah Pelatih')
                     ->icon('heroicon-s-plus')
                     ->url(fn(): string => route('admin.project.create'))
                     ->color('info')
