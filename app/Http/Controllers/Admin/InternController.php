@@ -9,6 +9,13 @@ class InternController extends Controller
 {
     public function index()
     {
-        return view('web.admin.intern.index');
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Industri'],
+            ['url' => '', 'label' => 'Senarai Pelatih Industri'],
+        ];
+
+        return view('web.admin.intern.index', [
+            'breadcrumbs' => $breadcrumbs,
+        ]);
     }
 }
