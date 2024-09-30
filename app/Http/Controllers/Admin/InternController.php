@@ -18,4 +18,17 @@ class InternController extends Controller
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
+
+    public function create()
+    {
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Industri'],
+            ['url' => route('admin.intern.index'), 'label' => 'Senarai Pelatih Industri'],
+            ['url' => '', 'label' => 'Tambah Pelatih'],
+        ];
+
+        return view('web.admin.intern.create', [
+            'breadcrumbs' => $breadcrumbs,
+        ]);
+    }
 }
