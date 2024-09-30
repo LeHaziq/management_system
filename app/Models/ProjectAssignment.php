@@ -11,6 +11,11 @@ class ProjectAssignment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'project_id',
+        'user_id',
+    ];
+
     public function project(): BelongsTo
     {
         return $this->BelongsTo(Project::class);

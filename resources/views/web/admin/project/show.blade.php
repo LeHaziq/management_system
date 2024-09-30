@@ -5,8 +5,7 @@
             <x-mysoftcare.navigations.tab-link href="{{ route('admin.project.show', $record->id) }}" class="rounded-s-lg" :active="request()->routeIs('admin.project.show')">
                 Maklumat Projek
             </x-mysoftcare.navigations.tab-link>
-            <x-mysoftcare.navigations.tab-link href="{{ route('admin.project.show', $record->id) }}" class="rounded-e-lg">
-
+            <x-mysoftcare.navigations.tab-link href="{{ route('admin.assignment.index', $record->id) }}" class="rounded-e-lg" :active="request()->routeIs('admin.assignment.index')">
                 Penugasan Projek
             </x-mysoftcare.navigations.tab-link>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\AgencyController;
 use App\Http\Controllers\Admin\MilestoneController;
 use App\Http\Controllers\Admin\PICAgencyController;
+use App\Http\Controllers\Admin\ProjectAssignmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -12,6 +13,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/projek/tambah', [ProjectController::class, 'create'])->name('project.create');
     Route::get('/projek/kemaskini/{id}', [ProjectController::class, 'edit'])->name('project.edit');
     Route::get('/projek/{id}', [ProjectController::class, 'show'])->name('project.show');
+
+    Route::get('/penugasan-projek/{project_id}', [ProjectAssignmentController::class, 'index'])->name('assignment.index');
 
     Route::get('/perbatuan/{project_id}', [MilestoneController::class, 'create'])->name('milestone.create');
     Route::get('/perbatuan/kemaskini/{project_id}/{milestone_id}', [MilestoneController::class, 'edit'])->name('milestone.edit');
