@@ -63,34 +63,51 @@
                     <li>
                         <x-mysoftcare.navigations.navbar-sublink href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Utama</x-mysoftcare.navigations.navbar-sublink>
                     </li>
+
                     @php
-                    if (Auth::user()->hasRole('admin')) {
-                    $links = [
+                    $projectLinks = [
                     ['name' => 'Senarai Projek', 'route' => 'admin.project.index'],
                     ['name' => 'Senarai Agensi', 'route' => 'admin.agency.index'],
                     ['name' => 'Senarai PIC', 'route' => 'admin.agency.pic.index'],
                     ];
 
-                    } else {
-                    $links = [
-                    ['name' => 'Utama', 'route' => 'dashboard']
+                    $industryLinks = [
+                    ['name' => 'Senarai Pelatih', 'route' => 'admin.project.index'],
                     ];
-
-                    }
                     @endphp
-                    @role('admin')
-                    <x-mysoftcare.navigations.navbar-dropdown :active="request()->routeIs('admin.project.index')">
 
+                    @role('admin')
+                    <x-mysoftcare.navigations.navbar-dropdown>
+                        <x-slot:id>
+                            projectDropdown
+                        </x-slot:id>
                         <x-slot:name>
                             Pengurusan Projek
                         </x-slot:name>
-                        @foreach ($links as $link)
+
+                        @foreach ($projectLinks as $link)
                         <li>
                             <x-mysoftcare.navigations.dropdown-link href="{{ route( $link['route'] ) }}">
                                 {{ $link['name'] }}
                             </x-mysoftcare.navigations.dropdown-link>
                         </li>
                         @endforeach
+                    </x-mysoftcare.navigations.navbar-dropdown>
+
+                    <x-mysoftcare.navigations.navbar-dropdown>
+                        <x-slot:id>
+                            industryDropdown
+                        </x-slot:id>
+                        <x-slot:name>
+                            Pengurusan Industri
+                        </x-slot:name>
+                        @foreach ($industryLinks as $link)
+                        <li>
+                            <x-mysoftcare.navigations.dropdown-link href="{{ route( $link['route'] ) }}">
+                    {{ $link['name'] }}
+                    </x-mysoftcare.navigations.dropdown-link>
+                    </li>
+                    @endforeach
                     </x-mysoftcare.navigations.navbar-dropdown>
                     @endrole
                 </ul>

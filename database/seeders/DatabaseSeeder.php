@@ -28,6 +28,12 @@ class DatabaseSeeder extends Seeder
             'password' => '1234', // password
         ])->assignRole('admin');
 
+        User::create([
+            'name' => 'Haziq',
+            'email' => 'haziqaimanfb@gmail.com',
+            'password' => '1234', // password
+        ]);
+
         Agency::factory()->count(5)->create();
         PICAgency::factory()->count(5)->create();
         Project::factory()->count(20)->create();
