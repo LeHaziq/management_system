@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('interns', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('ic');
             $table->string('email')->unique();
+<<<<<<< HEAD
             $table->string('letter')->nullable();
             $table->string('education_level');
             $table->year('education_year');
@@ -25,6 +27,9 @@ return new class extends Migration
             $table->string('picture')->nullable();
             $table->string('resume')->nullable();
             $table->string('status');
+=======
+            
+>>>>>>> parent of 69764cd (update Intern model attributes)
             $table->timestamps();
         });
     }
