@@ -6,6 +6,7 @@ use App\Livewire\BaseDataTable;
 use App\Models\ProjectAssignment;
 use App\Models\User;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
@@ -36,8 +37,9 @@ class AssignmentTable extends BaseDataTable
     {
         $columns = [
             TextColumn::make('user.name')
-                ->label('Nama')
-                ->searchable()
+                ->label('Nama'),
+            TextColumn::make('role')
+                ->label('Tugas')
         ];
 
         return $columns;
@@ -62,6 +64,8 @@ class AssignmentTable extends BaseDataTable
                                 ->options(User::pluck('name', 'id'))
                                 ->searchable()
                                 ->required(),
+                            TextInput::make('role')
+                                ->label('Tugas'),
                         ];
 
                         return $fields;

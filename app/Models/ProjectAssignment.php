@@ -14,6 +14,7 @@ class ProjectAssignment extends Model
     protected $fillable = [
         'project_id',
         'user_id',
+        'role',
     ];
 
     public function project(): BelongsTo
