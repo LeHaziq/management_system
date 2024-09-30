@@ -19,14 +19,12 @@ return new class extends Migration
             $table->string('education_level');
             $table->year('education_year');
             $table->string('school_university');
-            $table->json('skills')->nullable();
-            $table->string('university');
             $table->integer('training_period');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('picture')->nullable();
             $table->string('resume')->nullable();
-            $table->enum('status', ['accepted', 'rejected', 'active', 'completed', 'review'])->default('review');
+            $table->string('status');
             $table->timestamps();
         });
     }

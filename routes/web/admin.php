@@ -32,5 +32,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/pic-agensi/{id}', [PICAgencyController::class, 'show'])->name('agency.pic.show');
 
     Route::get('/industri', [InternController::class, 'index'])->name('intern.index');
+    Route::get('/industri/tambah', [InternController::class, 'create'])->name('intern.create');
 });
 

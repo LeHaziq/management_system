@@ -42,7 +42,7 @@ class InternTable extends BaseDataTable
                 CreateAction::make()
                     ->label('Tambah Pelatih')
                     ->icon('heroicon-s-plus')
-                    ->url(fn(): string => route('admin.project.create'))
+                    ->url(fn(): string => route('admin.intern.create'))
                     ->color('info')
             ])
             ->query($this->getQuery())
