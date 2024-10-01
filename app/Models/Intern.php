@@ -11,21 +11,8 @@ class Intern extends Model
 
     protected $fillable = [
         'name',
+        'ic',
         'email',
-        'letter',
-        'education_level',
-        'education_year',
-        'school_university',
-        'training_period',
-        'start_date',
-        'end_date',
-        'picture',
-        'resume',
-        'status',
     ];
 
-    protected $casts = [
-        'start_date' => 'date',
-        'end_date' => 'date',
-    ];
 }

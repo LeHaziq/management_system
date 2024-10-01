@@ -34,48 +34,9 @@ class InternForm extends BaseForm
                 Section::make('Maklumat Asas')
                     ->description('Maklumat asas mengenai individu')
                     ->schema([
-                        TextInput::make('name')->required()->label('Name'),
+                        TextInput::make('name')->required()->label('Nama'),
+                        TextInput::make('ic')->required()->label('IC'),
                         TextInput::make('email')->required()->email()->label('E-Mel'),
-                        FileUpload::make('letter')->label('Letter'),
-                    ]),
-
-                Section::make('Maklumat Pengajian')
-                    ->description('Maklumat mengenai tahap pengajian')
-                    ->schema([
-                        TextInput::make('education_level')->required()->label('Tahap Pengajian'),
-                        TextInput::make('education_year')->required()->label('Tahun Pengajian')->numeric(),
-                        TextInput::make('school_university')->required()->label('Sekolah/Universiti'),
-                    ]),
-
-                Section::make('Maklumat Latihan')
-                    ->description('Maklumat mengenai tempoh latihan')
-                    ->schema([
-                        TextInput::make('training_period')->required()->label('Tempoh Latihan')->numeric(),
-                        DatePicker::make('start_date')->required()->label('Tarikh Mula Latihan'),
-                        DatePicker::make('end_date')->required()->label('Tarikh Tamat Latihan'),
-                    ]),
-
-                Section::make('Dokumen')
-                    ->description('Muat naik dokumen yang diperlukan')
-                    ->schema([
-                        FileUpload::make('picture')->label('Gambar (upload)'),
-                        FileUpload::make('resume')->label('Resume (upload)'),
-                    ]),
-
-                Section::make('Status')
-                    ->description('Status permohonan')
-                    ->schema([
-                        Select::make('status')
-                            ->required()
-                            ->native(false)
-                            ->options([
-                                'accepted' => 'Accepted',
-                                'rejected' => 'Rejected',
-                                'active' => 'Active',
-                                'completed' => 'Completed',
-                                'review' => 'Review',
-                            ])
-                            ->label('Status'),
                     ]),
             ])
             ->statePath('data');

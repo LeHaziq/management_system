@@ -16,20 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('ic');
             $table->string('email')->unique();
-<<<<<<< HEAD
-            $table->string('letter')->nullable();
-            $table->string('education_level');
-            $table->year('education_year');
-            $table->string('school_university');
-            $table->integer('training_period');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('picture')->nullable();
-            $table->string('resume')->nullable();
-            $table->string('status');
-=======
-            
->>>>>>> parent of 69764cd (update Intern model attributes)
             $table->timestamps();
         });
     }
