@@ -16,6 +16,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('ic');
             $table->string('email')->unique();
+            $table->string('education_level')->nullable();
+            $table->string('education_institution')->nullable();
+            $table->integer('year')->nullable();
+            $table->string('skill')->nullable();
+            $table->integer('internship_period')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('resume')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }
