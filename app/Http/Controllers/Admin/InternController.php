@@ -42,10 +42,25 @@ class InternController extends Controller
         ];
 
         $intern = Intern::findOrFail($id);
-        
+
         return view('web.admin.intern.edit', [
             'breadcrumbs' => $breadcrumbs,
             'intern' => $intern,
+        ]);
+    }
+
+    public function show($id)
+    {
+        $intern = Intern::findOrFail($id);
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Industri'],
+            ['url' => route('admin.intern.index'), 'label' => 'Senarai Pelatih Industri'],
+            ['url' => '', 'label' => $intern->name],
+        ];
+
+        return view('web.admin.intern.show', [
+            'breadcrumbs' => $breadcrumbs,
+            'record' => $intern,
         ]);
     }
 }

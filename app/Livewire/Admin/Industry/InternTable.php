@@ -52,6 +52,10 @@ class InternTable extends BaseDataTable
             ->columns($this->getColumns())
             ->filters([])
             ->actions([
+                ViewAction::make('show')
+                    ->label('Lihat')
+                    ->icon('heroicon-s-eye')
+                    ->url(fn(Intern $record): string => route('admin.intern.show', $record->id)),
                 ActionGroup::make([
                     EditAction::make('edit')
                         ->label('Kemaskini')

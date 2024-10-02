@@ -66,10 +66,10 @@ class InternForm extends BaseForm
                     ->description('Status pelatih')
                     ->schema([
                         Select::make('status')->label('Status')->options([
-                            'diterima' => 'Diterima',
-                            'ditolak' => 'Ditolak',
-                            'aktif' => 'Aktif',
-                            'tamat' => 'Tamat',
+                            'Diterima' => 'diterima',
+                            'Ditolak' => 'ditolak',
+                            'Aktif' => 'aktif',
+                            'Tamat' => 'tamat',
                         ])
                             ->native(false),
                     ]),
