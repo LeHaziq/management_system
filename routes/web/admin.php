@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\AgencyController;
 use App\Http\Controllers\Admin\InternController;
+use App\Http\Controllers\Admin\LeaveApplicationController;
 use App\Http\Controllers\Admin\MilestoneController;
 use App\Http\Controllers\Admin\PICAgencyController;
 use App\Http\Controllers\Admin\ProjectAssignmentController;
@@ -35,5 +36,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/industri/intern/tambah', [InternController::class, 'create'])->name('intern.create');
     Route::get('/industri/intern/kemaskini/{id}', [InternController::class, 'edit'])->name('intern.edit');
     Route::get('/industri/intern/{id}', [InternController::class, 'show'])->name('intern.show');
+
+    Route::get('/industri/cuti', [LeaveApplicationController::class, 'index'])->name('leave.index');
 });
 
