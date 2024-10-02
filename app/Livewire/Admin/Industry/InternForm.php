@@ -26,7 +26,7 @@ class InternForm extends BaseForm
 
     public function mount()
     {
-        $this->intern = $intern ?? new Intern();
+        $this->intern ??= new Intern();
         $this->data = $this->intern->toArray();
         $this->form->fill($this->data);
     }

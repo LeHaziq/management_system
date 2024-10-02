@@ -106,7 +106,7 @@ class ProjectTable extends BaseDataTable
                     Action::make('assign')
                         ->label('Penugasan Projek')
                         ->icon(false)
-                        ->url(fn(Project $record): string => route('admin.project.edit', $record->id)),
+                        ->url(fn(Project $record): string => route('admin.assignment.index', $record->id)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)

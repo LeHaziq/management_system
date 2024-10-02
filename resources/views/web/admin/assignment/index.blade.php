@@ -13,6 +13,5 @@
         <div class="text-slate-500">Tahun {{ $record->start_date->format('Y') }}</div>
         <br>
         <livewire:admin.project.assignment-table :project_id="$record->id" />
-
     </div>
 </x-admin-layout>

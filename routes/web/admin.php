@@ -31,7 +31,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/pic-agensi/kemaskini/{id}', [PICAgencyController::class, 'edit'])->name('agency.pic.edit');
     Route::get('/pic-agensi/{id}', [PICAgencyController::class, 'show'])->name('agency.pic.show');
 
-    Route::get('/industri', [InternController::class, 'index'])->name('intern.index');
-    Route::get('/industri/tambah', [InternController::class, 'create'])->name('intern.create');
+    Route::get('/industri/intern', [InternController::class, 'index'])->name('intern.index');
+    Route::get('/industri/intern/tambah', [InternController::class, 'create'])->name('intern.create');
+    Route::get('/industri/intern/kemaskini/{id}', [InternController::class, 'edit'])->name('intern.edit');
 });
 

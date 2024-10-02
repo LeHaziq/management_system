@@ -7,6 +7,7 @@ use App\Models\Intern;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -52,6 +53,10 @@ class InternTable extends BaseDataTable
             ->filters([])
             ->actions([
                 ActionGroup::make([
+                    EditAction::make('edit')
+                        ->label('Kemaskini')
+                        ->icon(false)
+                        ->url(fn(Intern $record): string => route('admin.intern.edit', $record->id)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)
