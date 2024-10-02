@@ -34,5 +34,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/industri/intern', [InternController::class, 'index'])->name('intern.index');
     Route::get('/industri/intern/tambah', [InternController::class, 'create'])->name('intern.create');
     Route::get('/industri/intern/kemaskini/{id}', [InternController::class, 'edit'])->name('intern.edit');
+    Route::get('/industri/intern/{id}', [InternController::class, 'show'])->name('intern.show');
 });
 
