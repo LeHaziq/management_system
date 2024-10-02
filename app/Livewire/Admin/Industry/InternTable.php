@@ -56,7 +56,7 @@ class InternTable extends BaseDataTable
                         ->label('Padam')
                         ->icon(false)
                         ->requiresConfirmation()
-                        ->action(fn(Project $record) => $record->delete())
+                        ->action(fn(Intern $record) => $record->delete())
                         ->modalHeading('Padam Projek')
                         ->modalDescription('Adakah anda pasti ingin melakukan ini?')
                         ->modalCancelActionLabel('Tidak')
