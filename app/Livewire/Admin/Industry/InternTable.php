@@ -4,7 +4,9 @@ namespace App\Livewire\Admin\Industry;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Intern;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -48,7 +50,19 @@ class InternTable extends BaseDataTable
             ->query($this->getQuery())
             ->columns($this->getColumns())
             ->filters([])
-            ->actions([])
+            ->actions([
+                ActionGroup::make([
+                    DeleteAction::make('delete')
+                        ->label('Padam')
+                        ->icon(false)
+                        ->requiresConfirmation()
+                        ->action(fn(Project $record) => $record->delete())
+                        ->modalHeading('Padam Projek')
+                        ->modalDescription('Adakah anda pasti ingin melakukan ini?')
+                        ->modalCancelActionLabel('Tidak')
+                        ->modalSubmitActionLabel('Ya'),
+                ]),
+            ])
             ->bulkActions([
                 // ...
             ]);
