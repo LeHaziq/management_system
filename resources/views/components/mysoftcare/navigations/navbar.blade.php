@@ -73,7 +73,7 @@
 
                     $industryLinks = [
                     ['name' => 'Senarai Pelatih', 'route' => 'admin.intern.index'],
-                    ['name' => 'Permohonan Cuti', 'route' => 'admin.intern.index'],
+                    ['name' => 'Permohonan Cuti', 'route' => 'admin.leave.index'],
 
                     ];
                     @endphp
