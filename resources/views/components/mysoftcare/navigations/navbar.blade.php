@@ -72,7 +72,7 @@
                     ];
 
                     $industryLinks = [
-                    ['name' => 'Senarai Pelatih', 'route' => 'admin.project.index'],
+                    ['name' => 'Senarai Pelatih', 'route' => 'admin.intern.index'],
                     ];
                     @endphp
 
@@ -104,10 +104,10 @@
                         @foreach ($industryLinks as $link)
                         <li>
                             <x-mysoftcare.navigations.dropdown-link href="{{ route( $link['route'] ) }}">
-                    {{ $link['name'] }}
-                    </x-mysoftcare.navigations.dropdown-link>
-                    </li>
-                    @endforeach
+                                {{ $link['name'] }}
+                            </x-mysoftcare.navigations.dropdown-link>
+                        </li>
+                        @endforeach
                     </x-mysoftcare.navigations.navbar-dropdown>
                     @endrole
                 </ul>
