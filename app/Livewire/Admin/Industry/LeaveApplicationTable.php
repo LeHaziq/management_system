@@ -31,7 +31,16 @@ class LeaveApplicationTable extends BaseDataTable
             TextColumn::make('end_date')
                 ->label('Tarikh Tamat Cuti'),
             TextColumn::make('leave_duration')
-                ->label('Tempoh Cuti'),
+                ->label('Tempoh Cuti (Hari)'),
+            TextColumn::make('status')
+                ->label('Status')
+                ->badge()
+                ->color(fn(string $state): string => match ($state) {
+                    'Diterima' => 'success',
+                    'Ditolak' => 'danger',
+                    'Permohonan' => 'warning',
+                }),
+
         ];
 
         return $columns;
@@ -47,7 +56,7 @@ class LeaveApplicationTable extends BaseDataTable
                 CreateAction::make()
                     ->label('Tambah Permohonan Cuti')
                     ->icon('heroicon-s-plus')
-                    ->url(fn(): string => route('admin.intern.create'))
+                    ->url(fn(): string => route('admin.leave.create'))
                     ->color('info')
             ])
             ->query($this->getQuery())
@@ -62,7 +71,7 @@ class LeaveApplicationTable extends BaseDataTable
                     EditAction::make('edit')
                         ->label('Kemaskini')
                         ->icon(false)
-                        ->url(fn(LeaveApplication $record): string => route('admin.intern.edit', $record->id)),
+                        ->url(fn(LeaveApplication $record): string => route('admin.leave.edit', $record->id)),
                     DeleteAction::make('delete')
                         ->label('Padam')
                         ->icon(false)
