@@ -66,7 +66,7 @@ class LeaveApplicationTable extends BaseDataTable
                 ViewAction::make('show')
                     ->label('Lihat')
                     ->icon('heroicon-s-eye')
-                    ->url(fn(LeaveApplication $record): string => route('admin.intern.show', $record->id)),
+                    ->url(fn(LeaveApplication $record): string => route('admin.leave.show', $record->id)),
                 ActionGroup::make([
                     EditAction::make('edit')
                         ->label('Kemaskini')
