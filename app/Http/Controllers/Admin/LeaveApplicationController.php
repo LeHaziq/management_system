@@ -48,4 +48,19 @@ class LeaveApplicationController extends Controller
             'leaveApplication' => $leaveApplication,
         ]);
     }
+
+    public function show($id)
+    {
+        $leaveApplication = LeaveApplication::findOrFail($id);
+        $breadcrumbs = [
+            ['url' => '', 'label' => 'Pengurusan Industri'],
+            ['url' => route('admin.leave.index'), 'label' => 'Senarai Permohonan Cuti'],
+            ['url' => '', 'label' => $leaveApplication->intern->name],
+        ];
+
+        return view('web.admin.leave.show', [
+            'breadcrumbs' => $breadcrumbs,
+            'record' => $leaveApplication,
+        ]);
+    }
 }
